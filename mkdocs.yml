@@ -1,0 +1,36 @@
+site_name: Labfile | .labfile Specification
+site_description: "Open, machine-readable protocol format for experimental biology."
+site_url: https://spec.labfile.bio
+repo_name: labfile-spec
+repo_url: https://github.com/labfile-org/labfile-spec
+
+theme:
+  name: material
+  features:
+    - navigation.instant
+    - navigation.sections
+    - content.code.copy
+    - search.highlight
+    - toc.follow
+  palette:
+    - scheme: default
+      primary: deep purple
+      accent: amber
+  logo: images/labfile-icon.png
+  favicon: images/labfile-icon.png
+
+nav:
+
+markdown_extensions:
+  - admonition
+  - toc:
+      permalink: true
+  - tables
+  - footnotes
+  - codehilite
+  - attr_list
+  - def_list
+  - md_in_html
+
+plugins:
+  - search
