@@ -1,0 +1,3591 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Open, machine-readable protocol format for experimental biology.">
+      
+      
+      
+        <link rel="canonical" href="https://spec.labfile.bio/">
+      
+      
+      
+      
+      <link rel="icon" href="images/labfile-icon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.22">
+    
+    
+      
+        <title>Labfile | .labfile Specification</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.84d31ad4.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#specification" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="." title="Labfile | .labfile Specification" class="md-header__button md-logo" aria-label="Labfile | .labfile Specification" data-md-component="logo">
+      
+  <img src="images/labfile-icon.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Labfile | .labfile Specification
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Specification
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="amber"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/labfile-org/labfile-spec" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    labfile-spec
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="Labfile | .labfile Specification" class="md-nav__button md-logo" aria-label="Labfile | .labfile Specification" data-md-component="logo">
+      
+  <img src="images/labfile-icon.png" alt="logo">
+
+    </a>
+    Labfile | .labfile Specification
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/labfile-org/labfile-spec" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    labfile-spec
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Specification
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="." class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Specification
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Overview
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 Goals
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-design-philosophy" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 Design Philosophy
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-top-level-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Top-Level Structure
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-minimal-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Minimal Example
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-syntax-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Syntax Rules
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Syntax Rules">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-general-formatting" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 General Formatting
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-validation-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 Validation Modes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-canonical-serialization" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3 Canonical Serialization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-error-codes-excerpt" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.4 Error Codes (excerpt)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-field-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Field Summary
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-field-descriptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Field Descriptions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Field Descriptions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-meta" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1 meta
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-materials" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.2 materials
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-devices" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.3 devices
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.4 steps
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#65-expected_results" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.5 expected_results
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#66-safety" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.6 safety
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#67-attachments" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.7 attachments
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#68-provenance" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.8 provenance
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#69-extensions" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.9 extensions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#610-validation-and-validation_mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.10 validation and validation_mode
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#611-validation_mode-behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.11 validation_mode Behavior
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#612-validation-metadata-and-attestation-logic" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.12 Validation Metadata and Attestation Logic
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-behavioral-extensions" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Behavioral Extensions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Behavioral Extensions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-repeat" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.1 repeat
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.2 loop
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73-branch" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.3 branch
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#74-confirm" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.4 confirm
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#75-execution-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.5 Execution Modes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#76-runtime-status-tracking" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.6 Runtime Status Tracking
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-validation-rules-and-integrity-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Validation Rules and Integrity Model
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Validation Rules and Integrity Model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-structural-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.1 Structural Rules
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-identity-and-reference-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.2 Identity and Reference Rules
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83-quantitative-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.3 Quantitative Rules
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#84-logical-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.4 Logical Rules
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#85-validation-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.5 Validation Modes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#86-signature-integrity" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.6 Signature Integrity
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#87-attestation-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.7 Attestation Example
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#88-registry-level-enforcement" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.8 Registry-Level Enforcement
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#89-example-validation-error-report" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.9 Example Validation Error Report
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-example-templates" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. Example Templates
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Example Templates">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91-minimal-protocol" class="md-nav__link">
+    <span class="md-ellipsis">
+      9.1 Minimal Protocol
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#92-advanced-research-protocol" class="md-nav__link">
+    <span class="md-ellipsis">
+      9.2 Advanced Research Protocol
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#93-automated-robotic-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      9.3 Automated / Robotic Workflow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#94-extended-template-with-custom-extension" class="md-nav__link">
+    <span class="md-ellipsis">
+      9.4 Extended Template with Custom Extension
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Overview
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 Goals
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-design-philosophy" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 Design Philosophy
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-top-level-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Top-Level Structure
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-minimal-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Minimal Example
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-syntax-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Syntax Rules
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Syntax Rules">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-general-formatting" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 General Formatting
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-validation-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 Validation Modes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-canonical-serialization" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3 Canonical Serialization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-error-codes-excerpt" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.4 Error Codes (excerpt)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-field-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Field Summary
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-field-descriptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Field Descriptions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Field Descriptions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-meta" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1 meta
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-materials" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.2 materials
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-devices" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.3 devices
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.4 steps
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#65-expected_results" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.5 expected_results
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#66-safety" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.6 safety
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#67-attachments" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.7 attachments
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#68-provenance" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.8 provenance
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#69-extensions" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.9 extensions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#610-validation-and-validation_mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.10 validation and validation_mode
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#611-validation_mode-behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.11 validation_mode Behavior
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#612-validation-metadata-and-attestation-logic" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.12 Validation Metadata and Attestation Logic
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-behavioral-extensions" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Behavioral Extensions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Behavioral Extensions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-repeat" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.1 repeat
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.2 loop
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73-branch" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.3 branch
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#74-confirm" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.4 confirm
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#75-execution-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.5 Execution Modes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#76-runtime-status-tracking" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.6 Runtime Status Tracking
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-validation-rules-and-integrity-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Validation Rules and Integrity Model
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Validation Rules and Integrity Model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-structural-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.1 Structural Rules
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-identity-and-reference-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.2 Identity and Reference Rules
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83-quantitative-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.3 Quantitative Rules
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#84-logical-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.4 Logical Rules
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#85-validation-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.5 Validation Modes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#86-signature-integrity" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.6 Signature Integrity
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#87-attestation-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.7 Attestation Example
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#88-registry-level-enforcement" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.8 Registry-Level Enforcement
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#89-example-validation-error-report" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.9 Example Validation Error Report
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-example-templates" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. Example Templates
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Example Templates">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91-minimal-protocol" class="md-nav__link">
+    <span class="md-ellipsis">
+      9.1 Minimal Protocol
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#92-advanced-research-protocol" class="md-nav__link">
+    <span class="md-ellipsis">
+      9.2 Advanced Research Protocol
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#93-automated-robotic-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      9.3 Automated / Robotic Workflow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#94-extended-template-with-custom-extension" class="md-nav__link">
+    <span class="md-ellipsis">
+      9.4 Extended Template with Custom Extension
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="specification">Specification<a class="headerlink" href="#specification" title="Permanent link">&para;</a></h1>
+<p><strong>Version:</strong> 1.0<br />
+<strong>Status:</strong> Draft for Public Comment<br />
+<strong>Document Type:</strong> Specification<br />
+<strong>Maintainer:</strong> Labfile Core Team<br />
+<strong>URL:</strong> <a href="https://spec.labfile.bio">https://spec.labfile.bio</a></p>
+<hr />
+<h2 id="1-overview">1. Overview<a class="headerlink" href="#1-overview" title="Permanent link">&para;</a></h2>
+<p>A <code>.labfile</code> is a <strong>structured YAML document</strong> that defines a scientific protocol in a way that is both <strong>human-readable</strong> and <strong>machine-verifiable</strong>.<br />
+It serves as a universal, auditable representation of laboratory procedures — bridging human authorship, automated execution, and regulatory traceability.</p>
+<p>Each <code>.labfile</code> is:</p>
+<ul>
+<li><strong>Declarative</strong> — describes <em>what happens</em>, not <em>how code runs</em></li>
+<li><strong>Versioned</strong> — the <code>LABFILE</code> header fixes the schema version</li>
+<li><strong>Validated</strong> — syntax, semantics, and units are machine-checked</li>
+<li><strong>Auditable</strong> — signed with a validator signature for immutability</li>
+<li><strong>Extensible</strong> — supports external schemas under <code>extensions:</code></li>
+</ul>
+<hr />
+<h3 id="11-goals">1.1 Goals<a class="headerlink" href="#11-goals" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Principle</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Reproducibility</strong></td>
+<td>Explicit parameters and units ensure experiments can be reproduced exactly.</td>
+</tr>
+<tr>
+<td><strong>Traceability</strong></td>
+<td>Each file can link to its data, lineage, and validation record.</td>
+</tr>
+<tr>
+<td><strong>Interoperability</strong></td>
+<td>Compatible with automation and FAIR standards (Autoprotocol, SiLA 2, ISA-JSON, RO-Crate).</td>
+</tr>
+<tr>
+<td><strong>Auditability</strong></td>
+<td>Cryptographically signed validation metadata prevents silent edits.</td>
+</tr>
+<tr>
+<td><strong>Human + Machine Symmetry</strong></td>
+<td>Readable YAML for scientists, strict JSON model for systems.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="12-design-philosophy">1.2 Design Philosophy<a class="headerlink" href="#12-design-philosophy" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Principle</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Human First</strong></td>
+<td>Scientists can author and read <code>.labfile</code> directly without programming.</td>
+</tr>
+<tr>
+<td><strong>Machine Safe</strong></td>
+<td>Every field has a defined type and unit, convertible to JSON Schema.</td>
+</tr>
+<tr>
+<td><strong>FAIR-Aligned</strong></td>
+<td>Built around Findable, Accessible, Interoperable, and Reusable data.</td>
+</tr>
+<tr>
+<td><strong>Deterministic</strong></td>
+<td>Identical input yields identical validated output — hash-stable.</td>
+</tr>
+<tr>
+<td><strong>Extensible</strong></td>
+<td>Extensions preserve forward-compatibility while isolating custom fields.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="2-top-level-structure">2. Top-Level Structure<a class="headerlink" href="#2-top-level-structure" title="Permanent link">&para;</a></h2>
+<p>Every <code>.labfile</code> follows this ordered layout:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>LABFILE</strong></td>
+<td>Specification version (must equal <code>"1.0"</code>).</td>
+</tr>
+<tr>
+<td><strong>meta</strong></td>
+<td>Metadata about authors, license, and project.</td>
+</tr>
+<tr>
+<td><strong>materials</strong></td>
+<td>List of reagents and consumables.</td>
+</tr>
+<tr>
+<td><strong>devices</strong></td>
+<td>Instruments or tools used in the protocol.</td>
+</tr>
+<tr>
+<td><strong>steps</strong></td>
+<td>Sequential procedural actions.</td>
+</tr>
+<tr>
+<td><strong>expected_results</strong></td>
+<td>Intended or observed outcomes.</td>
+</tr>
+<tr>
+<td><strong>safety</strong></td>
+<td>Biosafety and ethics information.</td>
+</tr>
+<tr>
+<td><strong>attachments</strong></td>
+<td>Related files, data, or analysis results.</td>
+</tr>
+<tr>
+<td><strong>provenance</strong></td>
+<td>Lineage and origin relationships.</td>
+</tr>
+<tr>
+<td><strong>extensions</strong></td>
+<td>Optional external namespaces.</td>
+</tr>
+<tr>
+<td><strong>validation</strong></td>
+<td>Automatically filled attestation block.</td>
+</tr>
+<tr>
+<td><strong>validation_mode</strong></td>
+<td><code>"strict"</code> or <code>"lenient"</code> validation setting.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="3-minimal-example">3. Minimal Example<a class="headerlink" href="#3-minimal-example" title="Permanent link">&para;</a></h2>
+<p>The example below demonstrates the modern <code>meta.authors[]</code> format and optional project website.</p>
+<div class="codehilite"><pre><span></span><code><span class="nt">LABFILE</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1.0&quot;</span>
+
+<span class="nt">meta</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Example</span><span class="nv"> </span><span class="s">DNA</span><span class="nv"> </span><span class="s">Extraction&quot;</span>
+<span class="w">  </span><span class="nt">authors</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Dr.</span><span class="nv"> </span><span class="s">Alice</span><span class="nv"> </span><span class="s">Smith&quot;</span>
+<span class="w">      </span><span class="nt">organization</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Tropic</span><span class="nv"> </span><span class="s">Biology</span><span class="nv"> </span><span class="s">Lab&quot;</span>
+<span class="w">      </span><span class="nt">role</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;lead&quot;</span>
+<span class="w">      </span><span class="nt">website</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://tropicbio.example.org&quot;</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Dr.</span><span class="nv"> </span><span class="s">Keiko</span><span class="nv"> </span><span class="s">Yamamoto&quot;</span>
+<span class="w">      </span><span class="nt">organization</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Tokyo</span><span class="nv"> </span><span class="s">Bioautomation</span><span class="nv"> </span><span class="s">Center&quot;</span>
+<span class="w">      </span><span class="nt">role</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;reviewer&quot;</span>
+<span class="w">  </span><span class="nt">lab</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Tropic</span><span class="nv"> </span><span class="s">Biology</span><span class="nv"> </span><span class="s">Lab&quot;</span>
+<span class="w">  </span><span class="nt">website</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://labfile.bio/examples/dna-extraction&quot;</span>
+<span class="w">  </span><span class="nt">license</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;CC-BY-4.0&quot;</span>
+<span class="w">  </span><span class="nt">review_status</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;draft&quot;</span>
+<span class="w">  </span><span class="nt">visibility</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;public&quot;</span>
+<span class="w">  </span><span class="nt">FAIR_status</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">derived_from</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;10.5281/zenodo.1234567&quot;</span><span class="p p-Indicator">]</span>
+
+<span class="nt">materials</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">m_buffer</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Lysis</span><span class="nv"> </span><span class="s">buffer&quot;</span>
+<span class="w">    </span><span class="nt">purity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">99</span>
+<span class="w">    </span><span class="nt">concentration</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">m_sample</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Blood</span><span class="nv"> </span><span class="s">sample&quot;</span>
+
+<span class="nt">devices</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">d_centrifuge</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Mini</span><span class="nv"> </span><span class="s">centrifuge&quot;</span>
+<span class="w">    </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;centrifuge&quot;</span>
+<span class="w">    </span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Eppendorf</span><span class="nv"> </span><span class="s">5418R&quot;</span>
+<span class="w">    </span><span class="nt">calibrated_at</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2025-01-10&quot;</span>
+
+<span class="nt">steps</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">s_1</span>
+<span class="w">    </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;add&quot;</span>
+<span class="w">    </span><span class="nt">with</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">m_buffer</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">m_sample</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">parameters</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">volume</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1 mL</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">s_2</span>
+<span class="w">    </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;centrifuge&quot;</span>
+<span class="w">    </span><span class="nt">use</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">d_centrifuge</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">parameters</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">speed</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">13000 rpm</span>
+<span class="w">      </span><span class="nt">duration</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5 min</span>
+
+<span class="nt">expected_results</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Supernatant</span><span class="nv"> </span><span class="s">contains</span><span class="nv"> </span><span class="s">lysed</span><span class="nv"> </span><span class="s">DNA.&quot;</span>
+<span class="w">  </span><span class="nt">quantitative_metrics</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;DNA_yield&quot;</span>
+<span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">20</span>
+<span class="w">      </span><span class="nt">unit</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;µg&quot;</span>
+<span class="w">  </span><span class="nt">method</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Spectrophotometer&quot;</span>
+
+<span class="nt">safety</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">biosafety_level</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;BSL-1&quot;</span>
+<span class="w">  </span><span class="nt">ethics_approval_type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;IRB&quot;</span>
+<span class="w">  </span><span class="nt">ethics_approval_id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;IRB2025-01&quot;</span>
+<span class="w">  </span><span class="nt">ethics_approval_date</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2025-02-01&quot;</span>
+<span class="w">  </span><span class="nt">notes</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Wear</span><span class="nv"> </span><span class="s">gloves</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">protective</span><span class="nv"> </span><span class="s">eyewear.&quot;</span>
+
+<span class="nt">attachments</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;raw_data&quot;</span>
+<span class="w">    </span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;csv&quot;</span>
+<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;./results/dna_yield.csv&quot;</span>
+<span class="w">    </span><span class="nt">access_level</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;public&quot;</span>
+<span class="w">    </span><span class="nt">repository_url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://zenodo.org/record/1234567&quot;</span>
+<span class="w">    </span><span class="nt">doi</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;10.5281/zenodo.1234567&quot;</span>
+
+<span class="nt">provenance</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">relation_type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;derived_from&quot;</span>
+<span class="w">    </span><span class="nt">source_type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;labfile&quot;</span>
+<span class="w">    </span><span class="nt">doi</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;10.5281/zenodo.99999&quot;</span>
+
+<span class="nt">extensions</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">my_custom_extension</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">ontology</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://example.org/schema/biolab/v1&quot;</span>
+
+<span class="nt">validation</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">validated_by</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Labfile</span><span class="nv"> </span><span class="s">Validator</span><span class="nv"> </span><span class="s">0.8.2&quot;</span>
+<span class="w">  </span><span class="nt">validated_at</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2025-10-30T14:30:00Z&quot;</span>
+<span class="w">  </span><span class="nt">signature</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;sha256:acb123def...&quot;</span>
+
+<span class="nt">validation_mode</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;strict&quot;</span>
+</code></pre></div>
+
+<h2 id="4-syntax-rules">4. Syntax Rules<a class="headerlink" href="#4-syntax-rules" title="Permanent link">&para;</a></h2>
+<p>The <code>.labfile</code> syntax follows <strong>deterministic YAML 1.2</strong>, using a constrained subset to guarantee
+machine-safe parsing and reproducible hashing.</p>
+<h3 id="41-general-formatting">4.1 General Formatting<a class="headerlink" href="#41-general-formatting" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Rule</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Indentation</strong></td>
+<td>Two spaces per level — tabs are invalid.</td>
+</tr>
+<tr>
+<td><strong>Order</strong></td>
+<td>Top-level keys must appear exactly in the order defined in §2.</td>
+</tr>
+<tr>
+<td><strong>Comments</strong></td>
+<td><code>#</code> comments allowed anywhere; ignored during validation.</td>
+</tr>
+<tr>
+<td><strong>IDs</strong></td>
+<td>All <code>id:</code> fields must be unique within a file.</td>
+</tr>
+<tr>
+<td><strong>References</strong></td>
+<td>Any reference in <code>with:</code> or <code>use:</code> must point to a declared ID.</td>
+</tr>
+<tr>
+<td><strong>Units</strong></td>
+<td>All quantitative values must include explicit units (see §6.6).</td>
+</tr>
+<tr>
+<td><strong>Qualitative terms</strong></td>
+<td>Phrases like <code>"room temperature"</code> or <code>"low speed"</code> are <strong>invalid</strong>.</td>
+</tr>
+<tr>
+<td><strong>Naming</strong></td>
+<td>Field names use <code>snake_case</code>; enumerations are case-insensitive.</td>
+</tr>
+<tr>
+<td><strong>Lists</strong></td>
+<td>Empty lists (<code>[]</code>) are forbidden — omit the key instead.</td>
+</tr>
+<tr>
+<td><strong>Unknown keys</strong></td>
+<td>Any undeclared key outside <code>extensions:</code> triggers <code>E120: Unknown field</code>.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="42-validation-modes">4.2 Validation Modes<a class="headerlink" href="#42-validation-modes" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Mode</th>
+<th>Behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>strict</strong></td>
+<td>All required fields enforced; warnings treated as errors; validator signature required.</td>
+</tr>
+<tr>
+<td><strong>lenient</strong></td>
+<td>Allows missing optional metadata and out-of-range warnings; signature optional.</td>
+</tr>
+</tbody>
+</table>
+<div class="codehilite"><pre><span></span><code><span class="nt">validation_mode</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;strict&quot;</span>
+</code></pre></div>
+
+<p>Validators, registries, and agents use this flag to decide whether the file must include
+a <code>validation:</code> block (§6.12) and whether schema deviations block execution.</p>
+<h3 id="43-canonical-serialization">4.3 Canonical Serialization<a class="headerlink" href="#43-canonical-serialization" title="Permanent link">&para;</a></h3>
+<p>Before signing, the Labfile Validator:</p>
+<ol>
+<li>Normalizes indentation and field order.</li>
+<li>Removes all comments.</li>
+<li>Serializes deterministically to UTF-8 YAML (canonical form).</li>
+<li>Computes a SHA-256 hash of the canonical content <strong>excluding</strong> the <code>validation:</code> block.</li>
+</ol>
+<p>This guarantees that identical Labfiles always yield identical hashes,
+making signatures reproducible and long-term verifiable.</p>
+<h3 id="44-error-codes-excerpt">4.4 Error Codes (excerpt)<a class="headerlink" href="#44-error-codes-excerpt" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Meaning</th>
+<th>Typical Cause</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>E001</strong></td>
+<td>Invalid LABFILE version</td>
+<td>Header not <code>"1.0"</code>.</td>
+</tr>
+<tr>
+<td><strong>E120</strong></td>
+<td>Unknown field</td>
+<td>Key not in schema and not inside <code>extensions:</code>.</td>
+</tr>
+<tr>
+<td><strong>E205</strong></td>
+<td>Missing unit</td>
+<td>Numeric value lacks unit.</td>
+</tr>
+<tr>
+<td><strong>E310</strong></td>
+<td>Invalid reference</td>
+<td><code>use:</code> or <code>with:</code> ID not found.</td>
+</tr>
+<tr>
+<td><strong>E431</strong></td>
+<td>Custom device lacks capabilities</td>
+<td><code>kind: "custom"</code> without <code>capabilities</code> in strict mode.</td>
+</tr>
+<tr>
+<td><strong>E512</strong></td>
+<td>Invalid enumeration</td>
+<td>Value not in allowed enum.</td>
+</tr>
+<tr>
+<td><strong>E590</strong></td>
+<td>Signature mismatch</td>
+<td>File changed post-validation.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="5-field-summary">5. Field Summary<a class="headerlink" href="#5-field-summary" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>Master table of all core sections and fields.<br />
+Fields marked <strong>conditional</strong> become required under the stated conditions.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Section</th>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Units</th>
+<th>Allowed Types</th>
+<th>Constraints / Enum</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>LABFILE</strong></td>
+<td><code>LABFILE</code></td>
+<td>string</td>
+<td>✅</td>
+<td>—</td>
+<td>string</td>
+<td>Must equal <code>"1.0"</code></td>
+<td><code>"1.0"</code></td>
+</tr>
+<tr>
+<td><strong>meta</strong></td>
+<td><code>title</code></td>
+<td>string</td>
+<td>✅</td>
+<td>—</td>
+<td>string</td>
+<td>Free text</td>
+<td><code>"DNA Extraction"</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>authors[]</code></td>
+<td>list\<object></td>
+<td>✅</td>
+<td>—</td>
+<td>array</td>
+<td>Each <code>{ name, organization?, role?, website? }</code></td>
+<td><code>[{ name: "Dr. Alice" }]</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>lab</code></td>
+<td>string</td>
+<td>✅</td>
+<td>—</td>
+<td>string</td>
+<td>Institution or facility</td>
+<td><code>"Tropic Biology Lab"</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>website</code></td>
+<td>string</td>
+<td>optional</td>
+<td>—</td>
+<td>URL</td>
+<td>Project or protocol URL</td>
+<td><code>"https://labfile.bio/p/123"</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>date</code></td>
+<td>date</td>
+<td>optional</td>
+<td>—</td>
+<td>ISO 8601</td>
+<td><code>YYYY-MM-DD</code></td>
+<td><code>"2025-10-30"</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>license</code></td>
+<td>string</td>
+<td>✅</td>
+<td>—</td>
+<td>string</td>
+<td>SPDX/CC (e.g., <code>CC-BY-4.0</code>)</td>
+<td><code>"CC-BY-4.0"</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>language</code></td>
+<td>string</td>
+<td>optional</td>
+<td>—</td>
+<td>string</td>
+<td>ISO 639-1</td>
+<td><code>"en"</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>review_status</code></td>
+<td>string</td>
+<td>optional</td>
+<td>—</td>
+<td>enum</td>
+<td><code>draft</code>, <code>approved</code>, <code>deprecated</code>, <code>archived</code></td>
+<td><code>"draft"</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>visibility</code></td>
+<td>string</td>
+<td>✅</td>
+<td>—</td>
+<td>enum</td>
+<td><code>public</code>, <code>internal</code>, <code>private</code></td>
+<td><code>"public"</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>derived_from</code></td>
+<td>list</td>
+<td>optional</td>
+<td>—</td>
+<td>array[string]</td>
+<td>DOIs or Labfile IDs</td>
+<td><code>["10.5281/zenodo.1234567"]</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>FAIR_status</code></td>
+<td>boolean/string</td>
+<td>optional</td>
+<td>—</td>
+<td>bool/enum</td>
+<td><code>true</code>, <code>"compliant"</code>, <code>"non_compliant"</code></td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>compliance</code></td>
+<td>list</td>
+<td>optional</td>
+<td>—</td>
+<td>array[string]</td>
+<td><code>"GLP"</code>, <code>"GMP"</code>, <code>"FAIR"</code>, <code>"ISO-9001"</code></td>
+<td><code>["GLP"]</code></td>
+</tr>
+<tr>
+<td><strong>materials[]</strong></td>
+<td><code>id</code></td>
+<td>string</td>
+<td>✅</td>
+<td>—</td>
+<td>string</td>
+<td>Unique per file</td>
+<td><code>"m_buffer"</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>name</code></td>
+<td>string</td>
+<td>✅</td>
+<td>—</td>
+<td>string</td>
+<td>—</td>
+<td><code>"Lysis buffer"</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>purity</code></td>
+<td>number</td>
+<td>optional</td>
+<td>%</td>
+<td>float</td>
+<td>0–100</td>
+<td><code>99</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>concentration</code></td>
+<td>number</td>
+<td>optional</td>
+<td>mM, µM, mg/mL, mol/L</td>
+<td>float</td>
+<td>≥0</td>
+<td><code>10</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>storage_temperature</code></td>
+<td>number</td>
+<td>optional</td>
+<td>°C</td>
+<td>float</td>
+<td>−196–200</td>
+<td><code>-20</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>hazards</code></td>
+<td>list</td>
+<td>optional</td>
+<td>—</td>
+<td>array[string]</td>
+<td><code>"flammable"</code>, <code>"toxic"</code>, …</td>
+<td><code>["toxic"]</code></td>
+</tr>
+<tr>
+<td><strong>devices[]</strong></td>
+<td><code>id</code></td>
+<td>string</td>
+<td>✅</td>
+<td>—</td>
+<td>string</td>
+<td>Unique</td>
+<td><code>"d_centrifuge"</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>name</code></td>
+<td>string</td>
+<td>✅</td>
+<td>—</td>
+<td>string</td>
+<td>—</td>
+<td><code>"Mini centrifuge"</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>kind</code></td>
+<td>string</td>
+<td>✅</td>
+<td>—</td>
+<td>enum</td>
+<td><code>"centrifuge"</code>, <code>"pipette"</code>, <code>"thermal_cycler"</code>, <code>"spectrophotometer"</code>, <code>"incubator"</code>, <code>"balance"</code>, <code>"shaker"</code>, <code>"robotic_arm"</code>, <code>"freezer"</code>, <code>"microscope"</code>, <code>"biosafety_cabinet"</code>, <code>"autoclave"</code>, <code>"liquid_handler"</code>, <code>"plate_reader"</code>, <code>"flow_cytometer"</code>, <code>"custom"</code></td>
+<td><code>"centrifuge"</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>description</code></td>
+<td>string</td>
+<td><strong>conditional</strong></td>
+<td>—</td>
+<td>string</td>
+<td><strong>Required if <code>kind</code> = <code>"custom"</code></strong></td>
+<td><code>"Ultrasonic cleaner 40 kHz"</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>capabilities</code></td>
+<td>map</td>
+<td><strong>conditional</strong></td>
+<td>—</td>
+<td>object</td>
+<td><strong>Required if <code>kind: custom</code> &amp; <code>validation_mode: strict</code></strong></td>
+<td><code>{ frequency: { unit: "kHz", min: 30, max: 45 } }</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>manufacturer</code></td>
+<td>string</td>
+<td>optional</td>
+<td>—</td>
+<td>string</td>
+<td>—</td>
+<td><code>"Eppendorf"</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>model</code></td>
+<td>string</td>
+<td>optional</td>
+<td>—</td>
+<td>string</td>
+<td>—</td>
+<td><code>"5418R"</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>calibrated_at</code></td>
+<td>date</td>
+<td>optional</td>
+<td>—</td>
+<td>ISO 8601</td>
+<td>—</td>
+<td><code>"2025-01-10"</code></td>
+</tr>
+<tr>
+<td><strong>steps[]</strong></td>
+<td><code>id</code></td>
+<td>string</td>
+<td>✅</td>
+<td>—</td>
+<td>string</td>
+<td>Unique</td>
+<td><code>"s_1"</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>action</code></td>
+<td>string</td>
+<td>✅</td>
+<td>—</td>
+<td>string</td>
+<td>Controlled action term</td>
+<td><code>"centrifuge"</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>with</code></td>
+<td>list</td>
+<td>optional</td>
+<td>—</td>
+<td>array[string]</td>
+<td>Material IDs</td>
+<td><code>["m_buffer"]</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>use</code></td>
+<td>list</td>
+<td>optional</td>
+<td>—</td>
+<td>array[string]</td>
+<td>Device IDs</td>
+<td><code>["d_centrifuge"]</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>parameters</code></td>
+<td>map</td>
+<td>optional</td>
+<td>—</td>
+<td>map</td>
+<td>Quantitative; units required</td>
+<td><code>{ speed: 13000 rpm }</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>execution_mode</code></td>
+<td>string</td>
+<td>optional</td>
+<td>—</td>
+<td>enum</td>
+<td><code>manual</code>, <code>automated</code>, <code>hybrid</code></td>
+<td><code>"manual"</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>runtime.status</code></td>
+<td>string</td>
+<td>optional</td>
+<td>—</td>
+<td>enum</td>
+<td><code>pending</code>, <code>running</code>, <code>completed</code>, <code>failed</code>, <code>skipped</code>, <code>aborted</code></td>
+<td><code>"completed"</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>documentation_level</code></td>
+<td>string</td>
+<td>optional</td>
+<td>—</td>
+<td>enum</td>
+<td><code>standard</code>, <code>verbose</code>, <code>audit</code></td>
+<td><code>"standard"</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>confirm</code></td>
+<td>map</td>
+<td>optional</td>
+<td>—</td>
+<td>object</td>
+<td>Manual checkpoint</td>
+<td><code>{ required: true, message: "Check clarity" }</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>repeat</code></td>
+<td>map</td>
+<td>optional</td>
+<td>—</td>
+<td>object</td>
+<td>Loop repetition</td>
+<td><code>{ count: 3, interval: 5 min }</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>loop</code></td>
+<td>map</td>
+<td>optional</td>
+<td>—</td>
+<td>object</td>
+<td>While-condition</td>
+<td><code>{ condition: { variable: "OD600", operator: "&lt;", value: 0.5 } }</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>branch</code></td>
+<td>map</td>
+<td>optional</td>
+<td>—</td>
+<td>object</td>
+<td>Conditional branch</td>
+<td><code>{ condition: {...}, then: "s_5", else: "s_6" }</code></td>
+</tr>
+<tr>
+<td><strong>expected_results</strong></td>
+<td><code>description</code></td>
+<td>string</td>
+<td>✅</td>
+<td>—</td>
+<td>string</td>
+<td>Outcome summary</td>
+<td><code>"Color change indicates reaction"</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>quantitative_metrics[]</code></td>
+<td>list\<object></td>
+<td>optional</td>
+<td>various</td>
+<td>array</td>
+<td><code>{ name, value, unit }</code></td>
+<td><code>[{ name: "DNA_yield", value: 20, unit: "µg" }]</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>method</code></td>
+<td>string</td>
+<td>optional</td>
+<td>—</td>
+<td>string</td>
+<td>Measurement method</td>
+<td><code>"Spectrophotometer"</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>confidence_level</code></td>
+<td>string</td>
+<td>optional</td>
+<td>—</td>
+<td>enum</td>
+<td><code>high</code>, <code>medium</code>, <code>low</code>, <code>unknown</code></td>
+<td><code>"high"</code></td>
+</tr>
+<tr>
+<td><strong>safety</strong></td>
+<td><code>biosafety_level</code></td>
+<td>string</td>
+<td>optional</td>
+<td>—</td>
+<td>enum</td>
+<td><code>BSL-1</code>, <code>BSL-2</code>, <code>BSL-3</code>, <code>BSL-4</code>, <code>non-applicable</code></td>
+<td><code>"BSL-1"</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>ethics_approval_type</code></td>
+<td>string</td>
+<td>optional</td>
+<td>—</td>
+<td>enum</td>
+<td><code>IRB</code>, <code>IACUC</code>, <code>HREC</code>, <code>internal</code>, <code>none</code></td>
+<td><code>"IRB"</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>ethics_approval_id</code></td>
+<td>string</td>
+<td>optional</td>
+<td>—</td>
+<td>string</td>
+<td>—</td>
+<td><code>"IRB2025-01"</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>ethics_approval_date</code></td>
+<td>date</td>
+<td>optional</td>
+<td>—</td>
+<td>ISO 8601</td>
+<td>—</td>
+<td><code>"2025-02-01"</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>notes</code></td>
+<td>string</td>
+<td>optional</td>
+<td>—</td>
+<td>string</td>
+<td>—</td>
+<td><code>"Handle reagents with gloves"</code></td>
+</tr>
+<tr>
+<td><strong>attachments[]</strong></td>
+<td><code>type</code></td>
+<td>string</td>
+<td>✅</td>
+<td>—</td>
+<td>enum</td>
+<td><code>raw_data</code>, <code>processed_data</code>, <code>report</code>, <code>image</code>, <code>log</code>, <code>archive</code>, <code>analysis_script</code></td>
+<td><code>"raw_data"</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>format</code></td>
+<td>string</td>
+<td>✅</td>
+<td>—</td>
+<td>enum</td>
+<td><code>csv</code>, <code>json</code>, <code>xlsx</code>, <code>yaml</code>, <code>xml</code>, <code>tiff</code>, <code>jpg</code>, <code>png</code>, <code>zip</code></td>
+<td><code>"csv"</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>path</code></td>
+<td>string</td>
+<td>✅</td>
+<td>—</td>
+<td>string</td>
+<td>File path</td>
+<td><code>"./results/output.csv"</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>repository_url</code></td>
+<td>string</td>
+<td>optional</td>
+<td>—</td>
+<td>URL</td>
+<td>Dataset or repo URL</td>
+<td><code>"https://zenodo.org/record/1234"</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>doi</code></td>
+<td>string</td>
+<td>optional</td>
+<td>—</td>
+<td>string</td>
+<td>DOI string</td>
+<td><code>"10.5281/zenodo.1234"</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>access_level</code></td>
+<td>string</td>
+<td>optional</td>
+<td>—</td>
+<td>enum</td>
+<td><code>public</code>, <code>restricted</code>, <code>private</code>, <code>tokenized</code>, <code>paid</code></td>
+<td><code>"public"</code></td>
+</tr>
+<tr>
+<td><strong>provenance[]</strong></td>
+<td><code>relation_type</code></td>
+<td>string</td>
+<td>optional</td>
+<td>—</td>
+<td>enum</td>
+<td><code>derived_from</code>, <code>variant_of</code>, <code>supersedes</code></td>
+<td><code>"derived_from"</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>source_type</code></td>
+<td>string</td>
+<td>optional</td>
+<td>—</td>
+<td>enum</td>
+<td><code>labfile</code>, <code>dataset</code>, <code>publication</code>, <code>instrument</code>, <code>repository</code>, <code>external_db</code></td>
+<td><code>"labfile"</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>doi</code></td>
+<td>string</td>
+<td>optional</td>
+<td>—</td>
+<td>string</td>
+<td>DOI or persistent ID</td>
+<td><code>"10.5281/zenodo.99999"</code></td>
+</tr>
+<tr>
+<td><strong>extensions</strong></td>
+<td><em>namespace</em></td>
+<td>map</td>
+<td>optional</td>
+<td>—</td>
+<td>any</td>
+<td>Custom namespaced fields</td>
+<td><code>{ microscopy_ext: {...} }</code></td>
+</tr>
+<tr>
+<td><strong>validation</strong></td>
+<td><code>validated_by</code></td>
+<td>string</td>
+<td><strong>conditional</strong></td>
+<td>—</td>
+<td>string</td>
+<td><strong>Required if <code>validation_mode: strict</code></strong></td>
+<td><code>"Labfile Validator 0.8.2"</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>validated_at</code></td>
+<td>date-time</td>
+<td><strong>conditional</strong></td>
+<td>—</td>
+<td>ISO 8601</td>
+<td><strong>Required if <code>validation_mode: strict</code></strong></td>
+<td><code>"2025-10-30T14:30:00Z"</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>signature</code></td>
+<td>string</td>
+<td><strong>conditional</strong></td>
+<td>—</td>
+<td>string</td>
+<td><code>sha256:&lt;hex&gt;</code> over canonical YAML (excl. <code>validation:</code>)</td>
+<td><code>"sha256:acb123def..."</code></td>
+</tr>
+<tr>
+<td><strong>validation_mode</strong></td>
+<td><code>validation_mode</code></td>
+<td>string</td>
+<td>optional</td>
+<td>—</td>
+<td>enum</td>
+<td><code>strict</code>, <code>lenient</code></td>
+<td><code>"strict"</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="6-field-descriptions">6. Field Descriptions<a class="headerlink" href="#6-field-descriptions" title="Permanent link">&para;</a></h2>
+<p>This section describes every key in <code>.labfile</code>, their validation logic, and conditional requirements.</p>
+<hr />
+<h3 id="61-meta">6.1 <code>meta</code><a class="headerlink" href="#61-meta" title="Permanent link">&para;</a></h3>
+<p>Holds contextual metadata for authorship, licensing, and project information.</p>
+<div class="codehilite"><pre><span></span><code><span class="nt">meta</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Example</span><span class="nv"> </span><span class="s">DNA</span><span class="nv"> </span><span class="s">Extraction&quot;</span>
+<span class="w">  </span><span class="nt">authors</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Dr.</span><span class="nv"> </span><span class="s">Alice</span><span class="nv"> </span><span class="s">Smith&quot;</span>
+<span class="w">      </span><span class="nt">organization</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Tropic</span><span class="nv"> </span><span class="s">Biology</span><span class="nv"> </span><span class="s">Lab&quot;</span>
+<span class="w">      </span><span class="nt">role</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;lead&quot;</span>
+<span class="w">      </span><span class="nt">website</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://tropicbio.example.org&quot;</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Dr.</span><span class="nv"> </span><span class="s">Keiko</span><span class="nv"> </span><span class="s">Yamamoto&quot;</span>
+<span class="w">      </span><span class="nt">organization</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Tokyo</span><span class="nv"> </span><span class="s">Bioautomation</span><span class="nv"> </span><span class="s">Center&quot;</span>
+<span class="w">      </span><span class="nt">role</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;reviewer&quot;</span>
+<span class="w">  </span><span class="nt">lab</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Tropic</span><span class="nv"> </span><span class="s">Biology</span><span class="nv"> </span><span class="s">Lab&quot;</span>
+<span class="w">  </span><span class="nt">website</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://labfile.bio/examples/dna-extraction&quot;</span>
+<span class="w">  </span><span class="nt">license</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;CC-BY-4.0&quot;</span>
+<span class="w">  </span><span class="nt">review_status</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;approved&quot;</span>
+<span class="w">  </span><span class="nt">visibility</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;public&quot;</span>
+<span class="w">  </span><span class="nt">FAIR_status</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">derived_from</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;10.5281/zenodo.1234567&quot;</span><span class="p p-Indicator">]</span>
+<span class="w">  </span><span class="nt">compliance</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;GLP&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;FAIR&quot;</span><span class="p p-Indicator">]</span>
+</code></pre></div>
+
+<p><strong>Notes</strong></p>
+<ul>
+<li><code>license</code> is required to ensure legal reusability and must follow SPDX or Creative Commons identifiers.</li>
+<li><code>authors</code> accepts multiple contributors; each can include <code>role</code> and <code>website</code>.</li>
+<li><code>visibility</code> defines sharing level:</li>
+<li><code>"public"</code> → visible on registries.</li>
+<li><code>"internal"</code> → local network distribution only.</li>
+<li><code>"private"</code> → restricted, signature optional.</li>
+<li><code>review_status</code> controls publication lifecycle (<code>draft</code>, <code>approved</code>, <code>deprecated</code>, <code>archived</code>).</li>
+<li><code>derived_from</code> tracks source DOIs or Labfile IDs for lineage provenance.</li>
+<li><code>website</code> at root level refers to the project or publication page.</li>
+</ul>
+<hr />
+<h3 id="62-materials">6.2 <code>materials</code><a class="headerlink" href="#62-materials" title="Permanent link">&para;</a></h3>
+<p>Defines every reagent, consumable, or biological material used.</p>
+<div class="codehilite"><pre><span></span><code><span class="nt">materials</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">m_buffer</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Lysis</span><span class="nv"> </span><span class="s">buffer&quot;</span>
+<span class="w">    </span><span class="nt">purity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">99</span>
+<span class="w">    </span><span class="nt">concentration</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
+<span class="w">    </span><span class="nt">concentration_unit</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;mM&quot;</span>
+<span class="w">    </span><span class="nt">storage_temperature</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-20</span>
+<span class="w">    </span><span class="nt">hazards</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;toxic&quot;</span><span class="p p-Indicator">]</span>
+</code></pre></div>
+
+<p><strong>Notes</strong></p>
+<ul>
+<li>All <code>id</code> values must be unique and referenceable under <code>steps.with</code>.</li>
+<li>Numeric fields (<code>purity</code>, <code>concentration</code>, <code>storage_temperature</code>) require explicit units.</li>
+<li>Qualitative phrases like <code>"cold"</code> or <code>"ambient"</code> are invalid.</li>
+<li>Optional fields (<code>hazards</code>) use controlled vocabularies.</li>
+</ul>
+<hr />
+<h3 id="63-devices">6.3 <code>devices</code><a class="headerlink" href="#63-devices" title="Permanent link">&para;</a></h3>
+<p>Describes instruments or hardware used in the protocol.</p>
+<div class="codehilite"><pre><span></span><code><span class="nt">devices</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">d_centrifuge</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Mini</span><span class="nv"> </span><span class="s">centrifuge&quot;</span>
+<span class="w">    </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;centrifuge&quot;</span>
+<span class="w">    </span><span class="nt">manufacturer</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Eppendorf&quot;</span>
+<span class="w">    </span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;5418R&quot;</span>
+<span class="w">    </span><span class="nt">calibrated_at</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2025-01-10&quot;</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">d_custom_cleaner</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Sonic</span><span class="nv"> </span><span class="s">Clean</span><span class="nv"> </span><span class="s">3000&quot;</span>
+<span class="w">    </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;custom&quot;</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Ultrasonic</span><span class="nv"> </span><span class="s">cleaning</span><span class="nv"> </span><span class="s">chamber</span><span class="nv"> </span><span class="s">operating</span><span class="nv"> </span><span class="s">at</span><span class="nv"> </span><span class="s">40</span><span class="nv"> </span><span class="s">kHz</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">glassware</span><span class="nv"> </span><span class="s">sterilization.&quot;</span>
+<span class="w">    </span><span class="nt">capabilities</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">frequency</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">unit</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;kHz&quot;</span>
+<span class="w">        </span><span class="nt">min</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30</span>
+<span class="w">        </span><span class="nt">max</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">45</span>
+<span class="w">      </span><span class="nt">volume_capacity</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">unit</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;L&quot;</span>
+<span class="w">        </span><span class="nt">min</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.5</span>
+<span class="w">        </span><span class="nt">max</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+<span class="w">      </span><span class="nt">functions</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;wash&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;sterilize&quot;</span><span class="p p-Indicator">]</span>
+</code></pre></div>
+
+<p><strong>Notes</strong></p>
+<ul>
+<li><code>kind</code> is <strong>required</strong> and must match one of the allowed types.<br />
+  (<code>centrifuge</code>, <code>pipette</code>, <code>thermal_cycler</code>, <code>spectrophotometer</code>, <code>incubator</code>, <code>balance</code>, <code>shaker</code>, <code>robotic_arm</code>, <code>freezer</code>, <code>microscope</code>, <code>biosafety_cabinet</code>, <code>autoclave</code>, <code>liquid_handler</code>, <code>plate_reader</code>, <code>flow_cytometer</code>, <code>custom</code>)</li>
+<li><code>calibrated_at</code> (optional) improves traceability.</li>
+<li><code>capabilities</code> are <strong>mandatory</strong> for <code>custom</code> kinds in <code>strict</code> mode.</li>
+<li>Each capability must define a <code>unit</code> and either a numeric <code>min</code>/<code>max</code> range or discrete <code>functions</code>.</li>
+<li>Validators check whether local lab equipment meets these capability thresholds.</li>
+</ul>
+<p><strong>Error Example</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="n">E431</span><span class="o">:</span><span class="w"> </span><span class="n">Custom</span><span class="w"> </span><span class="n">device</span><span class="w"> </span><span class="s1">&#39;d_custom_cleaner&#39;</span><span class="w"> </span><span class="n">missing</span><span class="w"> </span><span class="n">capabilities</span><span class="w"> </span><span class="o">(</span><span class="n">required</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">strict</span><span class="w"> </span><span class="n">mode</span><span class="o">)</span>
+</code></pre></div>
+
+<hr />
+<h3 id="64-steps">6.4 <code>steps</code><a class="headerlink" href="#64-steps" title="Permanent link">&para;</a></h3>
+<p>Defines sequential procedural actions forming the experiment.</p>
+<div class="codehilite"><pre><span></span><code><span class="nt">steps</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">s_1</span>
+<span class="w">    </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;add&quot;</span>
+<span class="w">    </span><span class="nt">with</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">m_buffer</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">m_sample</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">parameters</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">volume</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1 mL</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">s_2</span>
+<span class="w">    </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;centrifuge&quot;</span>
+<span class="w">    </span><span class="nt">use</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">d_centrifuge</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">parameters</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">speed</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">13000 rpm</span>
+<span class="w">      </span><span class="nt">duration</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5 min</span>
+<span class="w">      </span><span class="nt">temperature</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4 °C</span>
+<span class="w">    </span><span class="nt">confirm</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">      </span><span class="nt">message</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Ensure</span><span class="nv"> </span><span class="s">rotor</span><span class="nv"> </span><span class="s">lid</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">locked</span><span class="nv"> </span><span class="s">before</span><span class="nv"> </span><span class="s">start.&quot;</span>
+<span class="w">    </span><span class="nt">repeat</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">count</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+<span class="w">      </span><span class="nt">interval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10 min</span>
+</code></pre></div>
+
+<p><strong>Rules</strong></p>
+<ul>
+<li>Each <code>step</code> must have a unique <code>id</code> and an <code>action</code>.</li>
+<li><code>with:</code> refers to <code>materials.id</code>; <code>use:</code> refers to <code>devices.id</code>.</li>
+<li><code>parameters:</code> accept quantitative keys with units.</li>
+</ul>
+<p><strong>Typical parameter keys</strong></p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Units</th>
+<th>Range / Notes</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>volume</code></td>
+<td>number</td>
+<td>mL, µL</td>
+<td>0.1–1000</td>
+<td><code>"1 mL"</code></td>
+</tr>
+<tr>
+<td><code>time</code></td>
+<td>number</td>
+<td>s, min, h</td>
+<td>≥0</td>
+<td><code>"30 min"</code></td>
+</tr>
+<tr>
+<td><code>temperature</code></td>
+<td>number</td>
+<td>°C</td>
+<td>−80–150</td>
+<td><code>"37 °C"</code></td>
+</tr>
+<tr>
+<td><code>speed</code></td>
+<td>number</td>
+<td>rpm</td>
+<td>100–30000</td>
+<td><code>"13000 rpm"</code></td>
+</tr>
+<tr>
+<td><code>duration</code></td>
+<td>number</td>
+<td>s, min, h</td>
+<td>≥0</td>
+<td><code>"5 min"</code></td>
+</tr>
+<tr>
+<td><code>angle</code></td>
+<td>number</td>
+<td>°</td>
+<td>0–360</td>
+<td><code>45</code></td>
+</tr>
+<tr>
+<td><code>pressure</code></td>
+<td>number</td>
+<td>bar, psi</td>
+<td>≥0</td>
+<td><code>"1 bar"</code></td>
+</tr>
+<tr>
+<td><code>concentration</code></td>
+<td>number</td>
+<td>mol/L, mg/mL</td>
+<td>≥0</td>
+<td><code>"5 mM"</code></td>
+</tr>
+<tr>
+<td><code>mass</code></td>
+<td>number</td>
+<td>g, mg</td>
+<td>≥0</td>
+<td><code>"1.2 g"</code></td>
+</tr>
+<tr>
+<td><code>repetitions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>1–1000</td>
+<td><code>3</code></td>
+</tr>
+<tr>
+<td><code>wavelength</code></td>
+<td>number</td>
+<td>nm</td>
+<td>180–1100</td>
+<td><code>405</code></td>
+</tr>
+<tr>
+<td><code>humidity</code></td>
+<td>number</td>
+<td>%</td>
+<td>0–100</td>
+<td><code>60</code></td>
+</tr>
+<tr>
+<td><code>pH</code></td>
+<td>number</td>
+<td>—</td>
+<td>0–14</td>
+<td><code>7.4</code></td>
+</tr>
+<tr>
+<td><code>flow_rate</code></td>
+<td>number</td>
+<td>µL/min, mL/min</td>
+<td>≥0</td>
+<td><code>"500 µL/min"</code></td>
+</tr>
+<tr>
+<td><code>mix_speed</code></td>
+<td>number</td>
+<td>rpm</td>
+<td>0–2000</td>
+<td><code>"800 rpm"</code></td>
+</tr>
+<tr>
+<td><code>distance</code></td>
+<td>number</td>
+<td>mm, cm</td>
+<td>≥0</td>
+<td><code>"5 mm"</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Behavioral controls</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>confirm</code></td>
+<td>map</td>
+<td>Adds a human confirmation checkpoint before proceeding.</td>
+<td><code>{ required: true, message: "Inspect clarity" }</code></td>
+</tr>
+<tr>
+<td><code>repeat</code></td>
+<td>map</td>
+<td>Repeats the step a given number of times.</td>
+<td><code>{ count: 3, interval: 5 min }</code></td>
+</tr>
+<tr>
+<td><code>loop</code></td>
+<td>map</td>
+<td>Conditional repetition while an expression is true.</td>
+<td><code>{ condition: { variable: "OD600", operator: "&lt;", value: 0.5 } }</code></td>
+</tr>
+<tr>
+<td><code>branch</code></td>
+<td>map</td>
+<td>Conditional jump to another step or sequence.</td>
+<td><code>{ condition: {...}, then: "s_5", else: "s_6" }</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Notes</strong></p>
+<ul>
+<li>No qualitative conditions allowed (e.g., “until done” is invalid).</li>
+<li>In <code>strict</code> mode, all numeric parameters must include explicit units.</li>
+<li>Behavioral blocks (<code>repeat</code>, <code>loop</code>, <code>branch</code>) enable procedural logic while keeping the file declarative.</li>
+</ul>
+<hr />
+<h3 id="65-expected_results">6.5 <code>expected_results</code><a class="headerlink" href="#65-expected_results" title="Permanent link">&para;</a></h3>
+<p>Defines measurable or qualitative outcomes of the experiment.</p>
+<div class="codehilite"><pre><span></span><code><span class="nt">expected_results</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Supernatant</span><span class="nv"> </span><span class="s">contains</span><span class="nv"> </span><span class="s">lysed</span><span class="nv"> </span><span class="s">DNA.&quot;</span>
+<span class="w">  </span><span class="nt">quantitative_metrics</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;DNA_yield&quot;</span>
+<span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">20</span>
+<span class="w">      </span><span class="nt">unit</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;µg&quot;</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Purity_ratio&quot;</span>
+<span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.8</span>
+<span class="w">      </span><span class="nt">unit</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;A260/A280&quot;</span>
+<span class="w">  </span><span class="nt">method</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Spectrophotometer&quot;</span>
+<span class="w">  </span><span class="nt">confidence_level</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;high&quot;</span>
+</code></pre></div>
+
+<p><strong>Notes</strong></p>
+<ul>
+<li><code>description</code> is required for all experiments.</li>
+<li><code>quantitative_metrics</code> are optional structured records allowing automation and dashboards to display results.</li>
+<li><code>method</code> describes the measurement technique used for validation (e.g., <code>"Spectrophotometer"</code>, <code>"ELISA reader"</code>).</li>
+<li><code>confidence_level</code> is a qualitative indicator of result certainty (<code>high</code>, <code>medium</code>, <code>low</code>, <code>unknown</code>).</li>
+</ul>
+<hr />
+<h3 id="66-safety">6.6 <code>safety</code><a class="headerlink" href="#66-safety" title="Permanent link">&para;</a></h3>
+<p>Captures biosafety and ethical compliance requirements.</p>
+<div class="codehilite"><pre><span></span><code><span class="nt">safety</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">biosafety_level</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;BSL-1&quot;</span>
+<span class="w">  </span><span class="nt">ethics_approval_type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;IRB&quot;</span>
+<span class="w">  </span><span class="nt">ethics_approval_id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;IRB2025-01&quot;</span>
+<span class="w">  </span><span class="nt">ethics_approval_date</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2025-02-01&quot;</span>
+<span class="w">  </span><span class="nt">notes</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Handle</span><span class="nv"> </span><span class="s">reagents</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">gloves</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">goggles.&quot;</span>
+</code></pre></div>
+
+<p><strong>Notes</strong></p>
+<ul>
+<li><code>biosafety_level</code> aligns with international standards (BSL-1 → BSL-4).</li>
+<li><code>ethics_approval_type</code> may be <code>IRB</code>, <code>IACUC</code>, <code>HREC</code>, <code>internal</code>, or <code>none</code>.</li>
+<li><code>ethics_approval_id</code> and <code>ethics_approval_date</code> provide traceability for institutional compliance.</li>
+<li>Use <code>notes</code> for extra warnings or SOP references.</li>
+</ul>
+<hr />
+<h3 id="67-attachments">6.7 <code>attachments</code><a class="headerlink" href="#67-attachments" title="Permanent link">&para;</a></h3>
+<p>Links related datasets, reports, or analysis files.</p>
+<div class="codehilite"><pre><span></span><code><span class="nt">attachments</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;raw_data&quot;</span>
+<span class="w">    </span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;csv&quot;</span>
+<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;./results/dna_yield.csv&quot;</span>
+<span class="w">    </span><span class="nt">access_level</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;public&quot;</span>
+<span class="w">    </span><span class="nt">repository_url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://zenodo.org/record/1234567&quot;</span>
+<span class="w">    </span><span class="nt">doi</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;10.5281/zenodo.1234567&quot;</span>
+</code></pre></div>
+
+<p><strong>Notes</strong></p>
+<ul>
+<li>Each attachment must specify both <code>type</code> and <code>format</code>.</li>
+<li>The <code>path</code> is relative to the <code>.labfile</code> directory.</li>
+<li><code>repository_url</code> and <code>doi</code> enable integration with data repositories (e.g., Zenodo, Figshare).</li>
+<li><code>access_level</code> defines availability:</li>
+<li><code>"public"</code> — openly accessible</li>
+<li><code>"restricted"</code> — visible only to collaborators</li>
+<li><code>"private"</code> — local storage only</li>
+<li><code>"tokenized"</code> or <code>"paid"</code> — controlled programmatically</li>
+</ul>
+<p><strong>Error Example</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="n">E312</span><span class="o">:</span><span class="w"> </span><span class="n">Attachment</span><span class="w"> </span><span class="n">missing</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="n">or</span><span class="w"> </span><span class="n">format</span>
+</code></pre></div>
+
+<hr />
+<h3 id="68-provenance">6.8 <code>provenance</code><a class="headerlink" href="#68-provenance" title="Permanent link">&para;</a></h3>
+<p>Tracks lineage and origin relationships between <code>.labfile</code>s, datasets, or publications.</p>
+<div class="codehilite"><pre><span></span><code><span class="nt">provenance</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">relation_type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;derived_from&quot;</span>
+<span class="w">    </span><span class="nt">source_type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;dataset&quot;</span>
+<span class="w">    </span><span class="nt">doi</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;10.5281/zenodo.98765&quot;</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">relation_type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;variant_of&quot;</span>
+<span class="w">    </span><span class="nt">source_type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;labfile&quot;</span>
+<span class="w">    </span><span class="nt">doi</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;10.5281/zenodo.87654&quot;</span>
+</code></pre></div>
+
+<p><strong>Notes</strong></p>
+<ul>
+<li><code>relation_type</code> can be:</li>
+<li><code>"derived_from"</code> — result or transformation of another file.</li>
+<li><code>"variant_of"</code> — minor modification or alternate protocol version.</li>
+<li><code>"supersedes"</code> — officially replaces another protocol.</li>
+<li><code>source_type</code> describes the entity:</li>
+<li><code>"labfile"</code>, <code>"dataset"</code>, <code>"publication"</code>, <code>"instrument"</code>, <code>"repository"</code>, or <code>"external_db"</code>.</li>
+<li>Each provenance record can include DOI or internal reference.</li>
+<li>Helps establish traceability and versioned history across registries.</li>
+</ul>
+<hr />
+<h3 id="69-extensions">6.9 <code>extensions</code><a class="headerlink" href="#69-extensions" title="Permanent link">&para;</a></h3>
+<p>Namespace for domain-specific fields outside the core schema.</p>
+<div class="codehilite"><pre><span></span><code><span class="nt">extensions</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">microscopy_ext</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">objective</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;40x</span><span class="nv"> </span><span class="s">oil&quot;</span>
+<span class="w">    </span><span class="nt">fluorescence_filter</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;FITC&quot;</span>
+<span class="w">    </span><span class="nt">exposure_time</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;120</span><span class="nv"> </span><span class="s">ms&quot;</span>
+</code></pre></div>
+
+<p><strong>Notes</strong></p>
+<ul>
+<li>Each key under <code>extensions</code> represents a namespace.<br />
+  For example: <code>microscopy_ext</code>, <code>genomics_ext</code>, <code>automation_ext</code>.</li>
+<li>All keys must be lowercase and use underscores.</li>
+<li>Validators <strong>must ignore unknown namespaces</strong> but still verify YAML structure.</li>
+<li>Namespaces can optionally declare a schema URL:
+  <code>yaml
+  extensions:
+    microscopy_ext:
+      $schema: "https://schemas.labfile.bio/ext/microscopy/v1"
+      objective: "40x oil"</code></li>
+<li>Avoid overlapping existing field names from core schema.</li>
+</ul>
+<hr />
+<h3 id="610-validation-and-validation_mode">6.10 <code>validation</code> and <code>validation_mode</code><a class="headerlink" href="#610-validation-and-validation_mode" title="Permanent link">&para;</a></h3>
+<p>Validation metadata is automatically added by the Labfile Validator after successful schema verification.</p>
+<div class="codehilite"><pre><span></span><code><span class="nt">validation</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">validated_by</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Labfile</span><span class="nv"> </span><span class="s">Validator</span><span class="nv"> </span><span class="s">0.8.2&quot;</span>
+<span class="w">  </span><span class="nt">validated_at</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2025-10-30T14:30:00Z&quot;</span>
+<span class="w">  </span><span class="nt">signature</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;sha256:acb123def...&quot;</span>
+<span class="nt">validation_mode</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;strict&quot;</span>
+</code></pre></div>
+
+<p><strong>Rules</strong></p>
+<table>
+<thead>
+<tr>
+<th>Mode</th>
+<th>Required Fields</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>"strict"</code></td>
+<td><code>validated_by</code>, <code>validated_at</code>, <code>signature</code></td>
+<td>Full attestation for registry submission</td>
+</tr>
+<tr>
+<td><code>"lenient"</code></td>
+<td>none</td>
+<td>Draft validation; fields optional</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Notes</strong></p>
+<ul>
+<li>The <code>signature</code> is a SHA-256 checksum over the canonical <code>.labfile</code> content (excluding the <code>validation:</code> block).</li>
+<li><code>validated_at</code> follows ISO 8601 date-time format with UTC <code>Z</code> suffix.</li>
+<li>Validators automatically compute and insert these values.</li>
+<li>Any modification to the file after validation invalidates the signature.</li>
+</ul>
+<p><strong>Error Example</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="n">E590</span><span class="o">:</span><span class="w"> </span><span class="n">Signature</span><span class="w"> </span><span class="n">mismatch</span><span class="w"> </span><span class="err">—</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="n">modified</span><span class="w"> </span><span class="n">post</span><span class="o">-</span><span class="n">validation</span>
+</code></pre></div>
+
+<hr />
+<h3 id="611-validation_mode-behavior">6.11 <code>validation_mode</code> Behavior<a class="headerlink" href="#611-validation_mode-behavior" title="Permanent link">&para;</a></h3>
+<ul>
+<li>In <strong>strict</strong> mode:</li>
+<li>Validators enforce all required fields and numeric units.</li>
+<li>Unrecognized fields trigger hard errors.</li>
+<li>All validation metadata is mandatory.</li>
+<li>In <strong>lenient</strong> mode:</li>
+<li>Warnings allowed (e.g., missing optional metadata).</li>
+<li>Validator may skip signature generation.</li>
+<li>Suitable for drafts, sandbox testing, or internal sharing.</li>
+</ul>
+<hr />
+<h3 id="612-validation-metadata-and-attestation-logic">6.12 Validation Metadata and Attestation Logic<a class="headerlink" href="#612-validation-metadata-and-attestation-logic" title="Permanent link">&para;</a></h3>
+<p>Describes how validation metadata interacts with registries and agents.</p>
+<p><strong>Workflow</strong></p>
+<ol>
+<li>Author creates <code>.labfile</code>.</li>
+<li>Validator performs syntax + semantic validation.</li>
+<li>If successful:</li>
+<li>Adds the <code>validation:</code> block.</li>
+<li>Computes SHA-256 signature.</li>
+<li>Records validator name and version.</li>
+<li>Registry verifies hash at upload time.</li>
+<li>Any later change → mismatch → revalidation required.</li>
+</ol>
+<p><strong>Integrity Chain</strong></p>
+<table>
+<thead>
+<tr>
+<th>Proof</th>
+<th>Field</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Validator Identity</strong></td>
+<td><code>validated_by</code></td>
+<td>Identifies tool and version used.</td>
+</tr>
+<tr>
+<td><strong>Timestamp</strong></td>
+<td><code>validated_at</code></td>
+<td>Confirms validation date.</td>
+</tr>
+<tr>
+<td><strong>Cryptographic Hash</strong></td>
+<td><code>signature</code></td>
+<td>Ensures immutability.</td>
+</tr>
+</tbody>
+</table>
+<p>This mechanism provides regulatory-grade assurance that <code>.labfile</code> instances cannot be silently modified after validation.</p>
+<hr />
+<h2 id="7-behavioral-extensions">7. Behavioral Extensions<a class="headerlink" href="#7-behavioral-extensions" title="Permanent link">&para;</a></h2>
+<p>Behavioral extensions allow limited procedural logic inside <code>.labfile</code> without converting it into a programming language.<br />
+They describe how steps <strong>repeat</strong>, <strong>branch</strong>, or <strong>wait for conditions</strong>, while maintaining declarative readability.</p>
+<hr />
+<h3 id="71-repeat">7.1 <code>repeat</code><a class="headerlink" href="#71-repeat" title="Permanent link">&para;</a></h3>
+<p>Repeats a step a defined number of times or at fixed intervals.</p>
+<div class="codehilite"><pre><span></span><code><span class="nt">steps</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">s_repeat</span>
+<span class="w">    </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;mix&quot;</span>
+<span class="w">    </span><span class="nt">parameters</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">speed</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">500 rpm</span>
+<span class="w">      </span><span class="nt">duration</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30 s</span>
+<span class="w">    </span><span class="nt">repeat</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">count</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
+<span class="w">      </span><span class="nt">interval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10 s</span>
+</code></pre></div>
+
+<p><strong>Rules</strong></p>
+<ul>
+<li><code>count</code> — number of repetitions (≥1).</li>
+<li><code>interval</code> — waiting time between repetitions, with explicit units.</li>
+<li>Repetitions must not introduce side effects (e.g., cumulative additions).</li>
+<li>In <code>strict</code> mode, both <code>count</code> and <code>interval</code> must be defined.</li>
+</ul>
+<hr />
+<h3 id="72-loop">7.2 <code>loop</code><a class="headerlink" href="#72-loop" title="Permanent link">&para;</a></h3>
+<p>Executes a step repeatedly while a condition remains true.</p>
+<div class="codehilite"><pre><span></span><code><span class="nt">steps</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">s_loop</span>
+<span class="w">    </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;measure&quot;</span>
+<span class="w">    </span><span class="nt">use</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">d_spectrophotometer</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">parameters</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">wavelength</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">600 nm</span>
+<span class="w">    </span><span class="nt">loop</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">condition</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">variable</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;OD600&quot;</span>
+<span class="w">        </span><span class="nt">operator</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&lt;&quot;</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.5</span>
+<span class="w">      </span><span class="nt">check_interval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5 min</span>
+<span class="w">      </span><span class="nt">max_duration</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2 h</span>
+</code></pre></div>
+
+<p><strong>Rules</strong></p>
+<ul>
+<li><code>variable</code> — monitored parameter name (e.g., <code>"OD600"</code>).</li>
+<li><code>operator</code> — comparison operator (<code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code>, <code>==</code>, <code>!=</code>).</li>
+<li><code>value</code> — numeric threshold.</li>
+<li><code>check_interval</code> — polling frequency.</li>
+<li><code>max_duration</code> — safety cap to avoid infinite loops.</li>
+</ul>
+<p><strong>Example Behavior</strong></p>
+<blockquote>
+<p>Continue measuring OD600 every 5 minutes until it reaches 0.5, or stop after 2 hours.</p>
+</blockquote>
+<hr />
+<h3 id="73-branch">7.3 <code>branch</code><a class="headerlink" href="#73-branch" title="Permanent link">&para;</a></h3>
+<p>Defines a conditional workflow path based on evaluated criteria.</p>
+<div class="codehilite"><pre><span></span><code><span class="nt">steps</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">s_branch</span>
+<span class="w">    </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;analyze&quot;</span>
+<span class="w">    </span><span class="nt">parameters</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">wavelength</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">450 nm</span>
+<span class="w">    </span><span class="nt">branch</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">condition</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">variable</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;absorbance&quot;</span>
+<span class="w">        </span><span class="nt">operator</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&gt;&quot;</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.8</span>
+<span class="w">      </span><span class="nt">then</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;s_cleanup&quot;</span>
+<span class="w">      </span><span class="nt">else</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;s_repeat_analysis&quot;</span>
+</code></pre></div>
+
+<p><strong>Rules</strong></p>
+<ul>
+<li><code>then</code> and <code>else</code> reference valid step IDs.</li>
+<li>Conditions must evaluate deterministically (numeric comparison only).</li>
+<li>Validators verify referenced steps exist and no cycles are created.</li>
+<li>Optional <code>log_message</code> field can annotate decisions for audit trails.</li>
+</ul>
+<p><strong>Error Example</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="n">E660</span><span class="o">:</span><span class="w"> </span><span class="n">Branch</span><span class="w"> </span><span class="s1">&#39;then&#39;</span><span class="w"> </span><span class="n">target</span><span class="w"> </span><span class="n">step</span><span class="w"> </span><span class="n">not</span><span class="w"> </span><span class="n">found</span>
+</code></pre></div>
+
+<hr />
+<h3 id="74-confirm">7.4 <code>confirm</code><a class="headerlink" href="#74-confirm" title="Permanent link">&para;</a></h3>
+<p>Prompts human confirmation before execution continues.</p>
+<div class="codehilite"><pre><span></span><code><span class="nt">steps</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">s_confirm</span>
+<span class="w">    </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;pipette&quot;</span>
+<span class="w">    </span><span class="nt">with</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">m_buffer</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">parameters</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">volume</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100 µL</span>
+<span class="w">    </span><span class="nt">confirm</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">      </span><span class="nt">message</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Visually</span><span class="nv"> </span><span class="s">confirm</span><span class="nv"> </span><span class="s">that</span><span class="nv"> </span><span class="s">liquid</span><span class="nv"> </span><span class="s">reached</span><span class="nv"> </span><span class="s">100</span><span class="nv"> </span><span class="s">µL</span><span class="nv"> </span><span class="s">mark.&quot;</span>
+<span class="w">      </span><span class="nt">by</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;operator&quot;</span>
+</code></pre></div>
+
+<p><strong>Rules</strong></p>
+<ul>
+<li><code>required: true</code> → agent must pause for acknowledgment.</li>
+<li><code>message:</code> gives instruction shown to user/operator.</li>
+<li><code>by:</code> defines responsible role (<code>operator</code>, <code>reviewer</code>, <code>supervisor</code>).</li>
+<li>Skipping confirmation in strict mode triggers:
+  <code>E702: Required confirmation not acknowledged</code></li>
+</ul>
+<hr />
+<h3 id="75-execution-modes">7.5 Execution Modes<a class="headerlink" href="#75-execution-modes" title="Permanent link">&para;</a></h3>
+<p>Each <code>step</code> can specify how it is expected to be carried out.</p>
+<table>
+<thead>
+<tr>
+<th>Mode</th>
+<th>Description</th>
+<th>Agent Behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>manual</code></td>
+<td>Performed by human operator</td>
+<td>Validator ignores missing automation metadata</td>
+</tr>
+<tr>
+<td><code>automated</code></td>
+<td>Executed by robotic system</td>
+<td>Requires declared devices and measurable parameters</td>
+</tr>
+<tr>
+<td><code>hybrid</code></td>
+<td>Combination — human setup, machine execution</td>
+<td>Both must be defined</td>
+</tr>
+</tbody>
+</table>
+<div class="codehilite"><pre><span></span><code><span class="nt">steps</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">s_incubate</span>
+<span class="w">    </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;incubate&quot;</span>
+<span class="w">    </span><span class="nt">execution_mode</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;automated&quot;</span>
+<span class="w">    </span><span class="nt">use</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">d_incubator</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">parameters</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">temperature</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">37 °C</span>
+<span class="w">      </span><span class="nt">duration</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30 min</span>
+</code></pre></div>
+
+<hr />
+<h3 id="76-runtime-status-tracking">7.6 Runtime Status Tracking<a class="headerlink" href="#76-runtime-status-tracking" title="Permanent link">&para;</a></h3>
+<p>Used by agents and registries to monitor execution progress.</p>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>pending</code></td>
+<td>Step queued for execution</td>
+</tr>
+<tr>
+<td><code>running</code></td>
+<td>Step in progress</td>
+</tr>
+<tr>
+<td><code>completed</code></td>
+<td>Finished successfully</td>
+</tr>
+<tr>
+<td><code>failed</code></td>
+<td>Execution failed</td>
+</tr>
+<tr>
+<td><code>skipped</code></td>
+<td>Intentionally skipped</td>
+</tr>
+<tr>
+<td><code>aborted</code></td>
+<td>Stopped manually or by system</td>
+</tr>
+</tbody>
+</table>
+<p>Agents update these statuses dynamically during workflow runtime but <strong>must not</strong> alter any other step metadata.</p>
+<hr />
+<h2 id="8-validation-rules-and-integrity-model">8. Validation Rules and Integrity Model<a class="headerlink" href="#8-validation-rules-and-integrity-model" title="Permanent link">&para;</a></h2>
+<p>This section defines the formal rules a <code>.labfile</code> must satisfy to be considered valid under version <strong>1.0</strong> of the specification.</p>
+<hr />
+<h3 id="81-structural-rules">8.1 Structural Rules<a class="headerlink" href="#81-structural-rules" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Rule</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>S101</strong></td>
+<td>File must begin with <code>LABFILE: "1.0"</code>.</td>
+</tr>
+<tr>
+<td><strong>S102</strong></td>
+<td>All top-level keys must follow the prescribed order.</td>
+</tr>
+<tr>
+<td><strong>S103</strong></td>
+<td>Each section must be a valid YAML mapping or sequence.</td>
+</tr>
+<tr>
+<td><strong>S104</strong></td>
+<td>Empty lists or maps are not allowed (omit instead).</td>
+</tr>
+<tr>
+<td><strong>S105</strong></td>
+<td>Field names must use <code>snake_case</code>.</td>
+</tr>
+<tr>
+<td><strong>S106</strong></td>
+<td>Comments may appear anywhere and are ignored during validation.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="82-identity-and-reference-rules">8.2 Identity and Reference Rules<a class="headerlink" href="#82-identity-and-reference-rules" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Rule</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>R201</strong></td>
+<td>All <code>id:</code> values must be unique within the file.</td>
+</tr>
+<tr>
+<td><strong>R202</strong></td>
+<td><code>with:</code> in <code>steps</code> must reference valid <code>materials.id</code>.</td>
+</tr>
+<tr>
+<td><strong>R203</strong></td>
+<td><code>use:</code> in <code>steps</code> must reference valid <code>devices.id</code>.</td>
+</tr>
+<tr>
+<td><strong>R204</strong></td>
+<td><code>branch.then</code> and <code>branch.else</code> must reference existing <code>steps.id</code>.</td>
+</tr>
+<tr>
+<td><strong>R205</strong></td>
+<td><code>provenance[].doi</code> must be a valid DOI string (prefix <code>10.</code>).</td>
+</tr>
+<tr>
+<td><strong>R206</strong></td>
+<td><code>attachments[].path</code> must point to an existing local or remote resource.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="83-quantitative-rules">8.3 Quantitative Rules<a class="headerlink" href="#83-quantitative-rules" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Rule</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Q301</strong></td>
+<td>All numeric values must include a valid unit (e.g., <code>"5 mL"</code>).</td>
+</tr>
+<tr>
+<td><strong>Q302</strong></td>
+<td>Qualitative descriptors like <code>"room temperature"</code> or <code>"high speed"</code> are invalid.</td>
+</tr>
+<tr>
+<td><strong>Q303</strong></td>
+<td>Units must conform to SI symbols or accepted lab abbreviations (°C, mL, rpm, etc.).</td>
+</tr>
+<tr>
+<td><strong>Q304</strong></td>
+<td>Out-of-range values produce warnings or errors depending on <code>validation_mode</code>.</td>
+</tr>
+<tr>
+<td><strong>Q305</strong></td>
+<td>Derived metrics (e.g., <code>"A260/A280"</code>) must be expressed as numeric ratios when possible.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="84-logical-rules">8.4 Logical Rules<a class="headerlink" href="#84-logical-rules" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Rule</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>L401</strong></td>
+<td>Step execution order must be deterministic.</td>
+</tr>
+<tr>
+<td><strong>L402</strong></td>
+<td>No cyclic branching or looping structures allowed.</td>
+</tr>
+<tr>
+<td><strong>L403</strong></td>
+<td>Conditional logic must evaluate to a resolvable boolean.</td>
+</tr>
+<tr>
+<td><strong>L404</strong></td>
+<td><code>repeat</code> and <code>loop</code> blocks cannot coexist in the same step.</td>
+</tr>
+<tr>
+<td><strong>L405</strong></td>
+<td>Behavioral blocks (<code>branch</code>, <code>loop</code>, <code>confirm</code>) must not modify state variables directly.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="85-validation-modes">8.5 Validation Modes<a class="headerlink" href="#85-validation-modes" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Mode</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Strict</strong></td>
+<td>All schema, unit, and cross-reference rules enforced. Missing metadata triggers error.</td>
+</tr>
+<tr>
+<td><strong>Lenient</strong></td>
+<td>Structural rules enforced; semantic errors downgraded to warnings.</td>
+</tr>
+<tr>
+<td><strong>Hybrid (future)</strong></td>
+<td>Context-dependent validation for training or sandbox environments.</td>
+</tr>
+</tbody>
+</table>
+<p>Example usage:</p>
+<div class="codehilite"><pre><span></span><code><span class="nt">validation_mode</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;strict&quot;</span>
+</code></pre></div>
+
+<p><strong>Strict Mode Required For:</strong></p>
+<ul>
+<li>Registry publication</li>
+<li>Signature generation</li>
+<li>Regulatory submissions</li>
+</ul>
+<p><strong>Lenient Mode Allowed For:</strong></p>
+<ul>
+<li>Internal drafts</li>
+<li>Human editing stages</li>
+<li>Local sandbox runs</li>
+</ul>
+<hr />
+<h3 id="86-signature-integrity">8.6 Signature Integrity<a class="headerlink" href="#86-signature-integrity" title="Permanent link">&para;</a></h3>
+<p>When validated, the <code>.labfile</code> is <strong>sealed</strong> via SHA-256 hash computed over all normalized fields (excluding the <code>validation:</code> block).<br />
+This ensures immutability and reproducibility.</p>
+<p><strong>Computed Fields:</strong></p>
+<ul>
+<li><code>validated_by</code></li>
+<li><code>validated_at</code></li>
+<li><code>signature</code></li>
+</ul>
+<p><strong>Verification Workflow:</strong></p>
+<ol>
+<li>The validator parses and normalizes YAML → canonical JSON.</li>
+<li>Hash is generated:
+   <code>sha256sum canonical.json</code></li>
+<li>Resulting digest is stored under:
+   <code>yaml
+   validation:
+     signature: "sha256:abcdef123..."</code></li>
+<li>Registries and agents recompute this hash before execution to verify integrity.</li>
+</ol>
+<p><strong>Any modification to the file after signing requires revalidation.</strong></p>
+<hr />
+<h3 id="87-attestation-example">8.7 Attestation Example<a class="headerlink" href="#87-attestation-example" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="nt">validation</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">validated_by</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Labfile</span><span class="nv"> </span><span class="s">Validator</span><span class="nv"> </span><span class="s">0.9.1&quot;</span>
+<span class="w">  </span><span class="nt">validated_at</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2025-10-31T11:45:00Z&quot;</span>
+<span class="w">  </span><span class="nt">signature</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;sha256:e6a1329e6e04b9a2e19f2b9d318dbf76a79c6ed1ce84f5...&quot;</span>
+<span class="nt">validation_mode</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;strict&quot;</span>
+</code></pre></div>
+
+<p><strong>Audit Guarantees:</strong></p>
+<ul>
+<li>Ensures file version and validator version are bound together.</li>
+<li>Prevents retroactive tampering.</li>
+<li>Enables reproducibility and traceable publication through <code>spec.labfile.bio</code>.</li>
+</ul>
+<hr />
+<h3 id="88-registry-level-enforcement">8.8 Registry-Level Enforcement<a class="headerlink" href="#88-registry-level-enforcement" title="Permanent link">&para;</a></h3>
+<p>Registries receiving <code>.labfile</code> submissions must verify:</p>
+<table>
+<thead>
+<tr>
+<th>Check</th>
+<th>Enforcement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>File syntax</td>
+<td>Must parse as valid YAML/JSON</td>
+</tr>
+<tr>
+<td>LABFILE version</td>
+<td>Must match supported schema</td>
+</tr>
+<tr>
+<td>Signature</td>
+<td>Must match recomputed hash</td>
+</tr>
+<tr>
+<td>Provenance</td>
+<td>Required for derived or imported files</td>
+</tr>
+<tr>
+<td>License</td>
+<td>Required for public visibility</td>
+</tr>
+<tr>
+<td>Validation mode</td>
+<td>Must be <code>"strict"</code> for publication</td>
+</tr>
+</tbody>
+</table>
+<p>If any check fails, registry returns a <strong>400: Validation Error</strong> with structured error JSON.</p>
+<hr />
+<h3 id="89-example-validation-error-report">8.9 Example Validation Error Report<a class="headerlink" href="#89-example-validation-error-report" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;labfile_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;abc-123&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;spec_version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;validation_mode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;strict&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;errors&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Q302&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;steps[1].parameters.temperature&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Qualitative term &#39;room temperature&#39; is invalid — specify numeric value in °C.&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;R202&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;steps[2].with&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Reference &#39;m_unknown&#39; not found in materials.&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;warnings&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Q304&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;steps[3].parameters.speed&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Value 31000 rpm exceeds common centrifuge range (max 30000).&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>This structured report format will be mirrored by both the CLI and registry APIs for machine-readable validation results.</p>
+<hr />
+<h2 id="9-example-templates">9. Example Templates<a class="headerlink" href="#9-example-templates" title="Permanent link">&para;</a></h2>
+<p>This section presents canonical <code>.labfile</code> templates demonstrating correct structure, validation compliance, and behavioral logic.<br />
+All examples are valid under <strong>Labfile Specification v1.0</strong>.</p>
+<hr />
+<h3 id="91-minimal-protocol">9.1 Minimal Protocol<a class="headerlink" href="#91-minimal-protocol" title="Permanent link">&para;</a></h3>
+<p>Simplest valid <code>.labfile</code> passing strict validation.</p>
+<div class="codehilite"><pre><span></span><code><span class="nt">LABFILE</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1.0&quot;</span>
+
+<span class="nt">meta</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Buffer</span><span class="nv"> </span><span class="s">Preparation&quot;</span>
+<span class="w">  </span><span class="nt">authors</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Dr.</span><span class="nv"> </span><span class="s">Alice</span><span class="nv"> </span><span class="s">Smith&quot;</span>
+<span class="w">      </span><span class="nt">organization</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Tropic</span><span class="nv"> </span><span class="s">Biology</span><span class="nv"> </span><span class="s">Lab&quot;</span>
+<span class="w">  </span><span class="nt">lab</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Tropic</span><span class="nv"> </span><span class="s">Biology</span><span class="nv"> </span><span class="s">Lab&quot;</span>
+<span class="w">  </span><span class="nt">license</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;CC-BY-4.0&quot;</span>
+<span class="w">  </span><span class="nt">visibility</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;public&quot;</span>
+
+<span class="nt">materials</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">m_water</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Distilled</span><span class="nv"> </span><span class="s">water&quot;</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">m_naoh</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;NaOH</span><span class="nv"> </span><span class="s">pellets&quot;</span>
+
+<span class="nt">steps</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">s_1</span>
+<span class="w">    </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;add&quot;</span>
+<span class="w">    </span><span class="nt">with</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">m_water</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">m_naoh</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">parameters</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">mass</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2 g</span>
+<span class="w">      </span><span class="nt">volume</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100 mL</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">s_2</span>
+<span class="w">    </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;mix&quot;</span>
+<span class="w">    </span><span class="nt">parameters</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">duration</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2 min</span>
+<span class="w">      </span><span class="nt">mix_speed</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">600 rpm</span>
+
+<span class="nt">expected_results</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Clear</span><span class="nv"> </span><span class="s">0.1</span><span class="nv"> </span><span class="s">M</span><span class="nv"> </span><span class="s">NaOH</span><span class="nv"> </span><span class="s">buffer</span><span class="nv"> </span><span class="s">prepared.&quot;</span>
+
+<span class="nt">safety</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">biosafety_level</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;non-applicable&quot;</span>
+<span class="w">  </span><span class="nt">notes</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Wear</span><span class="nv"> </span><span class="s">gloves</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">goggles.&quot;</span>
+
+<span class="nt">validation_mode</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;strict&quot;</span>
+</code></pre></div>
+
+<p><strong>Key Characteristics</strong></p>
+<ul>
+<li>Meets minimum required fields.</li>
+<li>No devices or provenance needed.</li>
+<li>All numeric values include explicit units.</li>
+<li>Suitable for human-authored or local <code>.labfile</code> testing.</li>
+</ul>
+<hr />
+<h3 id="92-advanced-research-protocol">9.2 Advanced Research Protocol<a class="headerlink" href="#92-advanced-research-protocol" title="Permanent link">&para;</a></h3>
+<p>Includes full metadata, safety, provenance, and attachments.</p>
+<div class="codehilite"><pre><span></span><code><span class="nt">LABFILE</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1.0&quot;</span>
+
+<span class="nt">meta</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Enzyme</span><span class="nv"> </span><span class="s">Activity</span><span class="nv"> </span><span class="s">Assay&quot;</span>
+<span class="w">  </span><span class="nt">authors</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Dr.</span><span class="nv"> </span><span class="s">Lina</span><span class="nv"> </span><span class="s">Costa&quot;</span>
+<span class="w">      </span><span class="nt">organization</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;BioAnalytics</span><span class="nv"> </span><span class="s">Institute&quot;</span>
+<span class="w">      </span><span class="nt">website</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://bioanalytics.example.org&quot;</span>
+<span class="w">  </span><span class="nt">lab</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;BioAnalytics</span><span class="nv"> </span><span class="s">Institute&quot;</span>
+<span class="w">  </span><span class="nt">date</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2025-10-30&quot;</span>
+<span class="w">  </span><span class="nt">license</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;CC-BY-4.0&quot;</span>
+<span class="w">  </span><span class="nt">visibility</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;public&quot;</span>
+<span class="w">  </span><span class="nt">review_status</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;approved&quot;</span>
+<span class="w">  </span><span class="nt">FAIR_status</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;compliant&quot;</span>
+<span class="w">  </span><span class="nt">derived_from</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;10.5281/zenodo.98765&quot;</span><span class="p p-Indicator">]</span>
+
+<span class="nt">materials</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">m_substrate</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;pNPP</span><span class="nv"> </span><span class="s">substrate&quot;</span>
+<span class="w">    </span><span class="nt">concentration</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">m_buffer</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Assay</span><span class="nv"> </span><span class="s">buffer&quot;</span>
+<span class="w">    </span><span class="nt">pH</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">7.4</span>
+
+<span class="nt">devices</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">d_plate_reader</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;SpectraMax</span><span class="nv"> </span><span class="s">i3x&quot;</span>
+<span class="w">    </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;plate_reader&quot;</span>
+<span class="w">    </span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;SMX-220&quot;</span>
+<span class="w">    </span><span class="nt">calibrated_at</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2025-09-15&quot;</span>
+
+<span class="nt">steps</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">s_1</span>
+<span class="w">    </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;add&quot;</span>
+<span class="w">    </span><span class="nt">with</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">m_buffer</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">m_substrate</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">parameters</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">volume</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2 mL</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">s_2</span>
+<span class="w">    </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;incubate&quot;</span>
+<span class="w">    </span><span class="nt">parameters</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">temperature</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">37 °C</span>
+<span class="w">      </span><span class="nt">duration</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30 min</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">s_3</span>
+<span class="w">    </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;measure&quot;</span>
+<span class="w">    </span><span class="nt">use</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">d_plate_reader</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">parameters</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">wavelength</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">405 nm</span>
+<span class="w">      </span><span class="nt">repetitions</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+
+<span class="nt">expected_results</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Color</span><span class="nv"> </span><span class="s">change</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">yellow</span><span class="nv"> </span><span class="s">indicates</span><span class="nv"> </span><span class="s">enzyme</span><span class="nv"> </span><span class="s">activity.&quot;</span>
+<span class="w">  </span><span class="nt">quantitative_metrics</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Absorbance&quot;</span>
+<span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.82</span>
+<span class="w">      </span><span class="nt">unit</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;A405&quot;</span>
+<span class="w">  </span><span class="nt">method</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Spectrophotometer&quot;</span>
+<span class="w">  </span><span class="nt">confidence_level</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;high&quot;</span>
+
+<span class="nt">safety</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">biosafety_level</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;BSL-1&quot;</span>
+<span class="w">  </span><span class="nt">ethics_approval_type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;IRB&quot;</span>
+<span class="w">  </span><span class="nt">ethics_approval_id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;IRB2025-01&quot;</span>
+<span class="w">  </span><span class="nt">ethics_approval_date</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2025-02-01&quot;</span>
+<span class="w">  </span><span class="nt">notes</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Handle</span><span class="nv"> </span><span class="s">reagents</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">gloves.&quot;</span>
+
+<span class="nt">attachments</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;raw_data&quot;</span>
+<span class="w">    </span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;csv&quot;</span>
+<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;./results/output.csv&quot;</span>
+<span class="w">    </span><span class="nt">repository_url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://zenodo.org/record/1234&quot;</span>
+<span class="w">    </span><span class="nt">doi</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;10.5281/zenodo.1234&quot;</span>
+<span class="w">    </span><span class="nt">access_level</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;public&quot;</span>
+
+<span class="nt">provenance</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">relation_type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;derived_from&quot;</span>
+<span class="w">    </span><span class="nt">source_type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;dataset&quot;</span>
+<span class="w">    </span><span class="nt">doi</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;10.5281/zenodo.98765&quot;</span>
+
+<span class="nt">validation</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">validated_by</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Labfile</span><span class="nv"> </span><span class="s">Validator</span><span class="nv"> </span><span class="s">0.8.2&quot;</span>
+<span class="w">  </span><span class="nt">validated_at</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2025-10-30T14:30:00Z&quot;</span>
+<span class="w">  </span><span class="nt">signature</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;sha256:acb123def...&quot;</span>
+<span class="nt">validation_mode</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;strict&quot;</span>
+</code></pre></div>
+
+<p><strong>Key Characteristics</strong></p>
+<ul>
+<li>Includes all metadata fields and provenance.</li>
+<li>References validated datasets by DOI.</li>
+<li>Suitable for publication in FAIR registries.</li>
+<li>Contains attestation for audit-ready compliance.</li>
+</ul>
+<hr />
+<h3 id="93-automated-robotic-workflow">9.3 Automated / Robotic Workflow<a class="headerlink" href="#93-automated-robotic-workflow" title="Permanent link">&para;</a></h3>
+<p>Demonstrates <code>repeat</code>, <code>loop</code>, and <code>confirm</code> behavioral extensions.</p>
+<div class="codehilite"><pre><span></span><code><span class="nt">LABFILE</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1.0&quot;</span>
+
+<span class="nt">meta</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Automated</span><span class="nv"> </span><span class="s">Bacterial</span><span class="nv"> </span><span class="s">Growth</span><span class="nv"> </span><span class="s">Monitoring&quot;</span>
+<span class="w">  </span><span class="nt">authors</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Dr.</span><span class="nv"> </span><span class="s">Keiko</span><span class="nv"> </span><span class="s">Yamamoto&quot;</span>
+<span class="w">      </span><span class="nt">organization</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Tokyo</span><span class="nv"> </span><span class="s">Bioautomation</span><span class="nv"> </span><span class="s">Center&quot;</span>
+<span class="w">  </span><span class="nt">license</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;CC-BY-SA-4.0&quot;</span>
+<span class="w">  </span><span class="nt">visibility</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;internal&quot;</span>
+<span class="w">  </span><span class="nt">review_status</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;draft&quot;</span>
+
+<span class="nt">materials</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">m_media</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;LB</span><span class="nv"> </span><span class="s">medium&quot;</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">m_culture</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;E.</span><span class="nv"> </span><span class="s">coli</span><span class="nv"> </span><span class="s">overnight</span><span class="nv"> </span><span class="s">culture&quot;</span>
+
+<span class="nt">devices</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">d_incubator</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Thermal</span><span class="nv"> </span><span class="s">incubator&quot;</span>
+<span class="w">    </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;incubator&quot;</span>
+<span class="w">    </span><span class="nt">calibrated_at</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2025-08-10&quot;</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">d_reader</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Plate</span><span class="nv"> </span><span class="s">reader&quot;</span>
+<span class="w">    </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;plate_reader&quot;</span>
+<span class="w">    </span><span class="nt">calibrated_at</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2025-08-11&quot;</span>
+
+<span class="nt">steps</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">s_1</span>
+<span class="w">    </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;add&quot;</span>
+<span class="w">    </span><span class="nt">with</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">m_media</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">m_culture</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">parameters</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">volume</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">50 mL</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">s_2</span>
+<span class="w">    </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;incubate&quot;</span>
+<span class="w">    </span><span class="nt">use</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">d_incubator</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">parameters</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">temperature</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">37 °C</span>
+<span class="w">      </span><span class="nt">duration</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8 h</span>
+<span class="w">    </span><span class="nt">repeat</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">count</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8</span>
+<span class="w">      </span><span class="nt">interval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1 h</span>
+<span class="w">    </span><span class="nt">loop</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">condition</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">variable</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;OD600&quot;</span>
+<span class="w">        </span><span class="nt">operator</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&lt;&quot;</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.6</span>
+<span class="w">      </span><span class="nt">check_interval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10 min</span>
+<span class="w">      </span><span class="nt">max_duration</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">12 h</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">s_3</span>
+<span class="w">    </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;measure&quot;</span>
+<span class="w">    </span><span class="nt">use</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">d_reader</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">parameters</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">wavelength</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">600 nm</span>
+<span class="w">    </span><span class="nt">confirm</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">      </span><span class="nt">message</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Verify</span><span class="nv"> </span><span class="s">instrument</span><span class="nv"> </span><span class="s">lid</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">closed&quot;</span>
+<span class="w">      </span><span class="nt">by</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;operator&quot;</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">s_4</span>
+<span class="w">    </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;branch&quot;</span>
+<span class="w">    </span><span class="nt">branch</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">condition</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">variable</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;OD600&quot;</span>
+<span class="w">        </span><span class="nt">operator</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&gt;&quot;</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.9</span>
+<span class="w">      </span><span class="nt">then</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;s_5&quot;</span>
+<span class="w">      </span><span class="nt">else</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;s_6&quot;</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">s_5</span>
+<span class="w">    </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;centrifuge&quot;</span>
+<span class="w">    </span><span class="nt">parameters</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">speed</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8000 rpm</span>
+<span class="w">      </span><span class="nt">duration</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10 min</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">s_6</span>
+<span class="w">    </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;wait&quot;</span>
+<span class="w">    </span><span class="nt">parameters</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">duration</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30 min</span>
+
+<span class="nt">expected_results</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Growth</span><span class="nv"> </span><span class="s">curve</span><span class="nv"> </span><span class="s">monitored</span><span class="nv"> </span><span class="s">until</span><span class="nv"> </span><span class="s">OD600</span><span class="nv"> </span><span class="s">reaches</span><span class="nv"> </span><span class="s">0.9.&quot;</span>
+<span class="w">  </span><span class="nt">quantitative_metrics</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Final_OD600&quot;</span>
+<span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.92</span>
+<span class="w">      </span><span class="nt">unit</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;absorbance&quot;</span>
+<span class="w">  </span><span class="nt">confidence_level</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;medium&quot;</span>
+
+<span class="nt">safety</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">biosafety_level</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;BSL-1&quot;</span>
+<span class="w">  </span><span class="nt">notes</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Disinfect</span><span class="nv"> </span><span class="s">incubator</span><span class="nv"> </span><span class="s">surfaces</span><span class="nv"> </span><span class="s">after</span><span class="nv"> </span><span class="s">run.&quot;</span>
+
+<span class="nt">validation_mode</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;strict&quot;</span>
+</code></pre></div>
+
+<p><strong>Key Characteristics</strong></p>
+<ul>
+<li>Demonstrates all behavioral extensions (<code>repeat</code>, <code>loop</code>, <code>branch</code>, <code>confirm</code>).</li>
+<li>Ideal for robotic execution or simulation environments.</li>
+<li>Enables conditional and adaptive automation workflows.</li>
+</ul>
+<hr />
+<h3 id="94-extended-template-with-custom-extension">9.4 Extended Template with Custom Extension<a class="headerlink" href="#94-extended-template-with-custom-extension" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="nt">LABFILE</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1.0&quot;</span>
+
+<span class="nt">meta</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Fluorescence</span><span class="nv"> </span><span class="s">Microscopy</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">GFP-tagged</span><span class="nv"> </span><span class="s">Cells&quot;</span>
+<span class="w">  </span><span class="nt">authors</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Dr.</span><span class="nv"> </span><span class="s">Maria</span><span class="nv"> </span><span class="s">Torres&quot;</span>
+<span class="w">      </span><span class="nt">organization</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;University</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">Granada&quot;</span>
+<span class="w">  </span><span class="nt">license</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;CC-BY-4.0&quot;</span>
+<span class="w">  </span><span class="nt">visibility</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;public&quot;</span>
+
+<span class="nt">materials</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">m_cells</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;HeLa-GFP</span><span class="nv"> </span><span class="s">cell</span><span class="nv"> </span><span class="s">line&quot;</span>
+
+<span class="nt">devices</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">d_microscope</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Zeiss</span><span class="nv"> </span><span class="s">LSM900&quot;</span>
+<span class="w">    </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;microscope&quot;</span>
+<span class="w">    </span><span class="nt">calibrated_at</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2025-09-10&quot;</span>
+
+<span class="nt">steps</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">s_1</span>
+<span class="w">    </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;observe&quot;</span>
+<span class="w">    </span><span class="nt">use</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">d_microscope</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">parameters</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">wavelength</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">488 nm</span>
+<span class="w">      </span><span class="nt">exposure_time</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100 ms</span>
+
+<span class="nt">extensions</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">microscopy_ext</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">ontology</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://example.org/schema/microscopy/v1&quot;</span>
+<span class="w">    </span><span class="nt">z_stack_depth</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5 µm</span>
+<span class="w">    </span><span class="nt">pixel_size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.15 µm</span>
+<span class="w">    </span><span class="nt">image_format</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;TIFF&quot;</span>
+
+<span class="nt">expected_results</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;GFP</span><span class="nv"> </span><span class="s">fluorescence</span><span class="nv"> </span><span class="s">localized</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">nucleus.&quot;</span>
+<span class="w">  </span><span class="nt">confidence_level</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;high&quot;</span>
+
+<span class="nt">validation_mode</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;strict&quot;</span>
+</code></pre></div>
+
+<p><strong>Key Characteristics</strong></p>
+<ul>
+<li>Demonstrates schema-safe <code>extensions:</code> usage.</li>
+<li>Adds microscopy metadata for automated systems.</li>
+<li>Fully compatible with strict validation and signature generation.</li>
+</ul>
+<hr />
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": ".", "features": ["navigation.instant", "navigation.sections", "content.code.copy", "search.highlight", "toc.follow"], "search": "assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>
