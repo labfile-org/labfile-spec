@@ -55,9 +55,6 @@ plugins:
   - search:
       lang: en
       separator: '[\s\-]+'
-  - sitemap:
-      changefreq: daily
-      priority: 0.7
 
 extra_css:
   - stylesheets/overrides.css
