@@ -1,0 +1,10 @@
+/* Keep off-canvas navigation overlay above interactive embeds */
+@media screen and (max-width: 76.1875em) {
+  .md-overlay {
+    z-index: 120;
+  }
+
+  .md-sidebar--primary {
+    z-index: 130;
+  }
+}

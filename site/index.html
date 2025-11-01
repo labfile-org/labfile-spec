@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Official documentation for the .labfile format — a human-readable, machine-verifiable YAML standard for reproducible science, FAIR data, and lab automation.">
+        <meta name="description" content="Official documentation for the .labfile format - a human-readable, machine-verifiable YAML standard for reproducible science, FAIR data, and lab automation.">
       
       
         <meta name="author" content="Labfile Core Team">
@@ -1251,14 +1251,14 @@
 <hr />
 <h2 id="1-overview">1. Overview<a class="headerlink" href="#1-overview" title="Permanent link">&para;</a></h2>
 <p>A <code>.labfile</code> is a <strong>structured YAML document</strong> that defines a scientific protocol in a way that is both <strong>human-readable</strong> and <strong>machine-verifiable</strong>.<br />
-It serves as a universal, auditable representation of laboratory procedures — bridging human authorship, automated execution, and regulatory traceability.</p>
+It serves as a universal, auditable representation of laboratory procedures - bridging human authorship, automated execution, and regulatory traceability.</p>
 <p>Each <code>.labfile</code> is:</p>
 <ul>
-<li><strong>Declarative</strong> — describes <em>what happens</em>, not <em>how code runs</em></li>
-<li><strong>Versioned</strong> — the <code>LABFILE</code> header fixes the schema version</li>
-<li><strong>Validated</strong> — syntax, semantics, and units are machine-checked</li>
-<li><strong>Auditable</strong> — signed with a validator signature for immutability</li>
-<li><strong>Extensible</strong> — supports external schemas under <code>extensions:</code></li>
+<li><strong>Declarative</strong> - describes <em>what happens</em>, not <em>how code runs</em></li>
+<li><strong>Versioned</strong> - the <code>LABFILE</code> header fixes the schema version</li>
+<li><strong>Validated</strong> - syntax, semantics, and units are machine-checked</li>
+<li><strong>Auditable</strong> - signed with a validator signature for immutability</li>
+<li><strong>Extensible</strong> - supports external schemas under <code>extensions:</code></li>
 </ul>
 <hr />
 <h3 id="11-goals">1.1 Goals<a class="headerlink" href="#11-goals" title="Permanent link">&para;</a></h3>
@@ -1316,7 +1316,7 @@ It serves as a universal, auditable representation of laboratory procedures — 
 </tr>
 <tr>
 <td><strong>Deterministic</strong></td>
-<td>Identical input yields identical validated output — hash-stable.</td>
+<td>Identical input yields identical validated output - hash-stable.</td>
 </tr>
 <tr>
 <td><strong>Extensible</strong></td>
@@ -1491,7 +1491,7 @@ machine-safe parsing and reproducible hashing.</p>
 <tbody>
 <tr>
 <td><strong>Indentation</strong></td>
-<td>Two spaces per level — tabs are invalid.</td>
+<td>Two spaces per level - tabs are invalid.</td>
 </tr>
 <tr>
 <td><strong>Order</strong></td>
@@ -1523,7 +1523,7 @@ machine-safe parsing and reproducible hashing.</p>
 </tr>
 <tr>
 <td><strong>Lists</strong></td>
-<td>Empty lists (<code>[]</code>) are forbidden — omit the key instead.</td>
+<td>Empty lists (<code>[]</code>) are forbidden - omit the key instead.</td>
 </tr>
 <tr>
 <td><strong>Unknown keys</strong></td>
@@ -1637,7 +1637,7 @@ Fields marked <strong>conditional</strong> become required under the stated cond
 <td><code>LABFILE</code></td>
 <td>string</td>
 <td>✅</td>
-<td>—</td>
+<td>-</td>
 <td>string</td>
 <td>Must equal <code>"1.0"</code></td>
 <td><code>"1.0"</code></td>
@@ -1647,7 +1647,7 @@ Fields marked <strong>conditional</strong> become required under the stated cond
 <td><code>title</code></td>
 <td>string</td>
 <td>✅</td>
-<td>—</td>
+<td>-</td>
 <td>string</td>
 <td>Free text</td>
 <td><code>"DNA Extraction"</code></td>
@@ -1657,7 +1657,7 @@ Fields marked <strong>conditional</strong> become required under the stated cond
 <td><code>authors[]</code></td>
 <td>list\<object></td>
 <td>✅</td>
-<td>—</td>
+<td>-</td>
 <td>array</td>
 <td>Each <code>{ name, organization?, role?, website? }</code></td>
 <td><code>[{ name: "Dr. Alice" }]</code></td>
@@ -1667,7 +1667,7 @@ Fields marked <strong>conditional</strong> become required under the stated cond
 <td><code>lab</code></td>
 <td>string</td>
 <td>✅</td>
-<td>—</td>
+<td>-</td>
 <td>string</td>
 <td>Institution or facility</td>
 <td><code>"Tropic Biology Lab"</code></td>
@@ -1677,7 +1677,7 @@ Fields marked <strong>conditional</strong> become required under the stated cond
 <td><code>website</code></td>
 <td>string</td>
 <td>optional</td>
-<td>—</td>
+<td>-</td>
 <td>URL</td>
 <td>Project or protocol URL</td>
 <td><code>"https://labfile.bio/p/123"</code></td>
@@ -1687,7 +1687,7 @@ Fields marked <strong>conditional</strong> become required under the stated cond
 <td><code>date</code></td>
 <td>date</td>
 <td>optional</td>
-<td>—</td>
+<td>-</td>
 <td>ISO 8601</td>
 <td><code>YYYY-MM-DD</code></td>
 <td><code>"2025-10-30"</code></td>
@@ -1697,7 +1697,7 @@ Fields marked <strong>conditional</strong> become required under the stated cond
 <td><code>license</code></td>
 <td>string</td>
 <td>✅</td>
-<td>—</td>
+<td>-</td>
 <td>string</td>
 <td>SPDX/CC (e.g., <code>CC-BY-4.0</code>)</td>
 <td><code>"CC-BY-4.0"</code></td>
@@ -1707,7 +1707,7 @@ Fields marked <strong>conditional</strong> become required under the stated cond
 <td><code>language</code></td>
 <td>string</td>
 <td>optional</td>
-<td>—</td>
+<td>-</td>
 <td>string</td>
 <td>ISO 639-1</td>
 <td><code>"en"</code></td>
@@ -1717,7 +1717,7 @@ Fields marked <strong>conditional</strong> become required under the stated cond
 <td><code>review_status</code></td>
 <td>string</td>
 <td>optional</td>
-<td>—</td>
+<td>-</td>
 <td>enum</td>
 <td><code>draft</code>, <code>approved</code>, <code>deprecated</code>, <code>archived</code></td>
 <td><code>"draft"</code></td>
@@ -1727,7 +1727,7 @@ Fields marked <strong>conditional</strong> become required under the stated cond
 <td><code>visibility</code></td>
 <td>string</td>
 <td>✅</td>
-<td>—</td>
+<td>-</td>
 <td>enum</td>
 <td><code>public</code>, <code>internal</code>, <code>private</code></td>
 <td><code>"public"</code></td>
@@ -1737,7 +1737,7 @@ Fields marked <strong>conditional</strong> become required under the stated cond
 <td><code>derived_from</code></td>
 <td>list</td>
 <td>optional</td>
-<td>—</td>
+<td>-</td>
 <td>array[string]</td>
 <td>DOIs or Labfile IDs</td>
 <td><code>["10.5281/zenodo.1234567"]</code></td>
@@ -1747,7 +1747,7 @@ Fields marked <strong>conditional</strong> become required under the stated cond
 <td><code>FAIR_status</code></td>
 <td>boolean/string</td>
 <td>optional</td>
-<td>—</td>
+<td>-</td>
 <td>bool/enum</td>
 <td><code>true</code>, <code>"compliant"</code>, <code>"non_compliant"</code></td>
 <td><code>true</code></td>
@@ -1757,7 +1757,7 @@ Fields marked <strong>conditional</strong> become required under the stated cond
 <td><code>compliance</code></td>
 <td>list</td>
 <td>optional</td>
-<td>—</td>
+<td>-</td>
 <td>array[string]</td>
 <td><code>"GLP"</code>, <code>"GMP"</code>, <code>"FAIR"</code>, <code>"ISO-9001"</code></td>
 <td><code>["GLP"]</code></td>
@@ -1767,7 +1767,7 @@ Fields marked <strong>conditional</strong> become required under the stated cond
 <td><code>id</code></td>
 <td>string</td>
 <td>✅</td>
-<td>—</td>
+<td>-</td>
 <td>string</td>
 <td>Unique per file</td>
 <td><code>"m_buffer"</code></td>
@@ -1777,9 +1777,9 @@ Fields marked <strong>conditional</strong> become required under the stated cond
 <td><code>name</code></td>
 <td>string</td>
 <td>✅</td>
-<td>—</td>
+<td>-</td>
 <td>string</td>
-<td>—</td>
+<td>-</td>
 <td><code>"Lysis buffer"</code></td>
 </tr>
 <tr>
@@ -1817,7 +1817,7 @@ Fields marked <strong>conditional</strong> become required under the stated cond
 <td><code>hazards</code></td>
 <td>list</td>
 <td>optional</td>
-<td>—</td>
+<td>-</td>
 <td>array[string]</td>
 <td><code>"flammable"</code>, <code>"toxic"</code>, …</td>
 <td><code>["toxic"]</code></td>
@@ -1827,7 +1827,7 @@ Fields marked <strong>conditional</strong> become required under the stated cond
 <td><code>id</code></td>
 <td>string</td>
 <td>✅</td>
-<td>—</td>
+<td>-</td>
 <td>string</td>
 <td>Unique</td>
 <td><code>"d_centrifuge"</code></td>
@@ -1837,9 +1837,9 @@ Fields marked <strong>conditional</strong> become required under the stated cond
 <td><code>name</code></td>
 <td>string</td>
 <td>✅</td>
-<td>—</td>
+<td>-</td>
 <td>string</td>
-<td>—</td>
+<td>-</td>
 <td><code>"Mini centrifuge"</code></td>
 </tr>
 <tr>
@@ -1847,7 +1847,7 @@ Fields marked <strong>conditional</strong> become required under the stated cond
 <td><code>kind</code></td>
 <td>string</td>
 <td>✅</td>
-<td>—</td>
+<td>-</td>
 <td>enum</td>
 <td><code>"centrifuge"</code>, <code>"pipette"</code>, <code>"thermal_cycler"</code>, <code>"spectrophotometer"</code>, <code>"incubator"</code>, <code>"balance"</code>, <code>"shaker"</code>, <code>"robotic_arm"</code>, <code>"freezer"</code>, <code>"microscope"</code>, <code>"biosafety_cabinet"</code>, <code>"autoclave"</code>, <code>"liquid_handler"</code>, <code>"plate_reader"</code>, <code>"flow_cytometer"</code>, <code>"custom"</code></td>
 <td><code>"centrifuge"</code></td>
@@ -1857,7 +1857,7 @@ Fields marked <strong>conditional</strong> become required under the stated cond
 <td><code>description</code></td>
 <td>string</td>
 <td><strong>conditional</strong></td>
-<td>—</td>
+<td>-</td>
 <td>string</td>
 <td><strong>Required if <code>kind</code> = <code>"custom"</code></strong></td>
 <td><code>"Ultrasonic cleaner 40 kHz"</code></td>
@@ -1867,7 +1867,7 @@ Fields marked <strong>conditional</strong> become required under the stated cond
 <td><code>capabilities</code></td>
 <td>map</td>
 <td><strong>conditional</strong></td>
-<td>—</td>
+<td>-</td>
 <td>object</td>
 <td><strong>Required if <code>kind: custom</code> &amp; <code>validation_mode: strict</code></strong></td>
 <td><code>{ frequency: { unit: "kHz", min: 30, max: 45 } }</code></td>
@@ -1877,9 +1877,9 @@ Fields marked <strong>conditional</strong> become required under the stated cond
 <td><code>manufacturer</code></td>
 <td>string</td>
 <td>optional</td>
-<td>—</td>
+<td>-</td>
 <td>string</td>
-<td>—</td>
+<td>-</td>
 <td><code>"Eppendorf"</code></td>
 </tr>
 <tr>
@@ -1887,9 +1887,9 @@ Fields marked <strong>conditional</strong> become required under the stated cond
 <td><code>model</code></td>
 <td>string</td>
 <td>optional</td>
-<td>—</td>
+<td>-</td>
 <td>string</td>
-<td>—</td>
+<td>-</td>
 <td><code>"5418R"</code></td>
 </tr>
 <tr>
@@ -1897,9 +1897,9 @@ Fields marked <strong>conditional</strong> become required under the stated cond
 <td><code>calibrated_at</code></td>
 <td>date</td>
 <td>optional</td>
-<td>—</td>
+<td>-</td>
 <td>ISO 8601</td>
-<td>—</td>
+<td>-</td>
 <td><code>"2025-01-10"</code></td>
 </tr>
 <tr>
@@ -1907,7 +1907,7 @@ Fields marked <strong>conditional</strong> become required under the stated cond
 <td><code>id</code></td>
 <td>string</td>
 <td>✅</td>
-<td>—</td>
+<td>-</td>
 <td>string</td>
 <td>Unique</td>
 <td><code>"s_1"</code></td>
@@ -1917,7 +1917,7 @@ Fields marked <strong>conditional</strong> become required under the stated cond
 <td><code>action</code></td>
 <td>string</td>
 <td>✅</td>
-<td>—</td>
+<td>-</td>
 <td>string</td>
 <td>Controlled action term</td>
 <td><code>"centrifuge"</code></td>
@@ -1927,7 +1927,7 @@ Fields marked <strong>conditional</strong> become required under the stated cond
 <td><code>with</code></td>
 <td>list</td>
 <td>optional</td>
-<td>—</td>
+<td>-</td>
 <td>array[string]</td>
 <td>Material IDs</td>
 <td><code>["m_buffer"]</code></td>
@@ -1937,7 +1937,7 @@ Fields marked <strong>conditional</strong> become required under the stated cond
 <td><code>use</code></td>
 <td>list</td>
 <td>optional</td>
-<td>—</td>
+<td>-</td>
 <td>array[string]</td>
 <td>Device IDs</td>
 <td><code>["d_centrifuge"]</code></td>
@@ -1947,7 +1947,7 @@ Fields marked <strong>conditional</strong> become required under the stated cond
 <td><code>parameters</code></td>
 <td>map</td>
 <td>optional</td>
-<td>—</td>
+<td>-</td>
 <td>map</td>
 <td>Quantitative; units required</td>
 <td><code>{ speed: 13000 rpm }</code></td>
@@ -1957,7 +1957,7 @@ Fields marked <strong>conditional</strong> become required under the stated cond
 <td><code>execution_mode</code></td>
 <td>string</td>
 <td>optional</td>
-<td>—</td>
+<td>-</td>
 <td>enum</td>
 <td><code>manual</code>, <code>automated</code>, <code>hybrid</code></td>
 <td><code>"manual"</code></td>
@@ -1967,7 +1967,7 @@ Fields marked <strong>conditional</strong> become required under the stated cond
 <td><code>runtime.status</code></td>
 <td>string</td>
 <td>optional</td>
-<td>—</td>
+<td>-</td>
 <td>enum</td>
 <td><code>pending</code>, <code>running</code>, <code>completed</code>, <code>failed</code>, <code>skipped</code>, <code>aborted</code></td>
 <td><code>"completed"</code></td>
@@ -1977,7 +1977,7 @@ Fields marked <strong>conditional</strong> become required under the stated cond
 <td><code>documentation_level</code></td>
 <td>string</td>
 <td>optional</td>
-<td>—</td>
+<td>-</td>
 <td>enum</td>
 <td><code>standard</code>, <code>verbose</code>, <code>audit</code></td>
 <td><code>"standard"</code></td>
@@ -1987,7 +1987,7 @@ Fields marked <strong>conditional</strong> become required under the stated cond
 <td><code>confirm</code></td>
 <td>map</td>
 <td>optional</td>
-<td>—</td>
+<td>-</td>
 <td>object</td>
 <td>Manual checkpoint</td>
 <td><code>{ required: true, message: "Check clarity" }</code></td>
@@ -1997,7 +1997,7 @@ Fields marked <strong>conditional</strong> become required under the stated cond
 <td><code>repeat</code></td>
 <td>map</td>
 <td>optional</td>
-<td>—</td>
+<td>-</td>
 <td>object</td>
 <td>Loop repetition</td>
 <td><code>{ count: 3, interval: 5 min }</code></td>
@@ -2007,7 +2007,7 @@ Fields marked <strong>conditional</strong> become required under the stated cond
 <td><code>loop</code></td>
 <td>map</td>
 <td>optional</td>
-<td>—</td>
+<td>-</td>
 <td>object</td>
 <td>While-condition</td>
 <td><code>{ condition: { variable: "OD600", operator: "&lt;", value: 0.5 } }</code></td>
@@ -2017,7 +2017,7 @@ Fields marked <strong>conditional</strong> become required under the stated cond
 <td><code>branch</code></td>
 <td>map</td>
 <td>optional</td>
-<td>—</td>
+<td>-</td>
 <td>object</td>
 <td>Conditional branch</td>
 <td><code>{ condition: {...}, then: "s_5", else: "s_6" }</code></td>
@@ -2027,7 +2027,7 @@ Fields marked <strong>conditional</strong> become required under the stated cond
 <td><code>description</code></td>
 <td>string</td>
 <td>✅</td>
-<td>—</td>
+<td>-</td>
 <td>string</td>
 <td>Outcome summary</td>
 <td><code>"Color change indicates reaction"</code></td>
@@ -2047,7 +2047,7 @@ Fields marked <strong>conditional</strong> become required under the stated cond
 <td><code>method</code></td>
 <td>string</td>
 <td>optional</td>
-<td>—</td>
+<td>-</td>
 <td>string</td>
 <td>Measurement method</td>
 <td><code>"Spectrophotometer"</code></td>
@@ -2057,7 +2057,7 @@ Fields marked <strong>conditional</strong> become required under the stated cond
 <td><code>confidence_level</code></td>
 <td>string</td>
 <td>optional</td>
-<td>—</td>
+<td>-</td>
 <td>enum</td>
 <td><code>high</code>, <code>medium</code>, <code>low</code>, <code>unknown</code></td>
 <td><code>"high"</code></td>
@@ -2067,7 +2067,7 @@ Fields marked <strong>conditional</strong> become required under the stated cond
 <td><code>biosafety_level</code></td>
 <td>string</td>
 <td>optional</td>
-<td>—</td>
+<td>-</td>
 <td>enum</td>
 <td><code>BSL-1</code>, <code>BSL-2</code>, <code>BSL-3</code>, <code>BSL-4</code>, <code>non-applicable</code></td>
 <td><code>"BSL-1"</code></td>
@@ -2077,7 +2077,7 @@ Fields marked <strong>conditional</strong> become required under the stated cond
 <td><code>ethics_approval_type</code></td>
 <td>string</td>
 <td>optional</td>
-<td>—</td>
+<td>-</td>
 <td>enum</td>
 <td><code>IRB</code>, <code>IACUC</code>, <code>HREC</code>, <code>internal</code>, <code>none</code></td>
 <td><code>"IRB"</code></td>
@@ -2087,9 +2087,9 @@ Fields marked <strong>conditional</strong> become required under the stated cond
 <td><code>ethics_approval_id</code></td>
 <td>string</td>
 <td>optional</td>
-<td>—</td>
+<td>-</td>
 <td>string</td>
-<td>—</td>
+<td>-</td>
 <td><code>"IRB2025-01"</code></td>
 </tr>
 <tr>
@@ -2097,9 +2097,9 @@ Fields marked <strong>conditional</strong> become required under the stated cond
 <td><code>ethics_approval_date</code></td>
 <td>date</td>
 <td>optional</td>
-<td>—</td>
+<td>-</td>
 <td>ISO 8601</td>
-<td>—</td>
+<td>-</td>
 <td><code>"2025-02-01"</code></td>
 </tr>
 <tr>
@@ -2107,9 +2107,9 @@ Fields marked <strong>conditional</strong> become required under the stated cond
 <td><code>notes</code></td>
 <td>string</td>
 <td>optional</td>
-<td>—</td>
+<td>-</td>
 <td>string</td>
-<td>—</td>
+<td>-</td>
 <td><code>"Handle reagents with gloves"</code></td>
 </tr>
 <tr>
@@ -2117,7 +2117,7 @@ Fields marked <strong>conditional</strong> become required under the stated cond
 <td><code>type</code></td>
 <td>string</td>
 <td>✅</td>
-<td>—</td>
+<td>-</td>
 <td>enum</td>
 <td><code>raw_data</code>, <code>processed_data</code>, <code>report</code>, <code>image</code>, <code>log</code>, <code>archive</code>, <code>analysis_script</code></td>
 <td><code>"raw_data"</code></td>
@@ -2127,7 +2127,7 @@ Fields marked <strong>conditional</strong> become required under the stated cond
 <td><code>format</code></td>
 <td>string</td>
 <td>✅</td>
-<td>—</td>
+<td>-</td>
 <td>enum</td>
 <td><code>csv</code>, <code>json</code>, <code>xlsx</code>, <code>yaml</code>, <code>xml</code>, <code>tiff</code>, <code>jpg</code>, <code>png</code>, <code>zip</code></td>
 <td><code>"csv"</code></td>
@@ -2137,7 +2137,7 @@ Fields marked <strong>conditional</strong> become required under the stated cond
 <td><code>path</code></td>
 <td>string</td>
 <td>✅</td>
-<td>—</td>
+<td>-</td>
 <td>string</td>
 <td>File path</td>
 <td><code>"./results/output.csv"</code></td>
@@ -2147,7 +2147,7 @@ Fields marked <strong>conditional</strong> become required under the stated cond
 <td><code>repository_url</code></td>
 <td>string</td>
 <td>optional</td>
-<td>—</td>
+<td>-</td>
 <td>URL</td>
 <td>Dataset or repo URL</td>
 <td><code>"https://zenodo.org/record/1234"</code></td>
@@ -2157,7 +2157,7 @@ Fields marked <strong>conditional</strong> become required under the stated cond
 <td><code>doi</code></td>
 <td>string</td>
 <td>optional</td>
-<td>—</td>
+<td>-</td>
 <td>string</td>
 <td>DOI string</td>
 <td><code>"10.5281/zenodo.1234"</code></td>
@@ -2167,7 +2167,7 @@ Fields marked <strong>conditional</strong> become required under the stated cond
 <td><code>access_level</code></td>
 <td>string</td>
 <td>optional</td>
-<td>—</td>
+<td>-</td>
 <td>enum</td>
 <td><code>public</code>, <code>restricted</code>, <code>private</code>, <code>tokenized</code>, <code>paid</code></td>
 <td><code>"public"</code></td>
@@ -2177,7 +2177,7 @@ Fields marked <strong>conditional</strong> become required under the stated cond
 <td><code>relation_type</code></td>
 <td>string</td>
 <td>optional</td>
-<td>—</td>
+<td>-</td>
 <td>enum</td>
 <td><code>derived_from</code>, <code>variant_of</code>, <code>supersedes</code></td>
 <td><code>"derived_from"</code></td>
@@ -2187,7 +2187,7 @@ Fields marked <strong>conditional</strong> become required under the stated cond
 <td><code>source_type</code></td>
 <td>string</td>
 <td>optional</td>
-<td>—</td>
+<td>-</td>
 <td>enum</td>
 <td><code>labfile</code>, <code>dataset</code>, <code>publication</code>, <code>instrument</code>, <code>repository</code>, <code>external_db</code></td>
 <td><code>"labfile"</code></td>
@@ -2197,7 +2197,7 @@ Fields marked <strong>conditional</strong> become required under the stated cond
 <td><code>doi</code></td>
 <td>string</td>
 <td>optional</td>
-<td>—</td>
+<td>-</td>
 <td>string</td>
 <td>DOI or persistent ID</td>
 <td><code>"10.5281/zenodo.99999"</code></td>
@@ -2207,7 +2207,7 @@ Fields marked <strong>conditional</strong> become required under the stated cond
 <td><em>namespace</em></td>
 <td>map</td>
 <td>optional</td>
-<td>—</td>
+<td>-</td>
 <td>any</td>
 <td>Custom namespaced fields</td>
 <td><code>{ microscopy_ext: {...} }</code></td>
@@ -2217,7 +2217,7 @@ Fields marked <strong>conditional</strong> become required under the stated cond
 <td><code>validated_by</code></td>
 <td>string</td>
 <td><strong>conditional</strong></td>
-<td>—</td>
+<td>-</td>
 <td>string</td>
 <td><strong>Required if <code>validation_mode: strict</code></strong></td>
 <td><code>"Labfile Validator 0.8.2"</code></td>
@@ -2227,7 +2227,7 @@ Fields marked <strong>conditional</strong> become required under the stated cond
 <td><code>validated_at</code></td>
 <td>date-time</td>
 <td><strong>conditional</strong></td>
-<td>—</td>
+<td>-</td>
 <td>ISO 8601</td>
 <td><strong>Required if <code>validation_mode: strict</code></strong></td>
 <td><code>"2025-10-30T14:30:00Z"</code></td>
@@ -2237,7 +2237,7 @@ Fields marked <strong>conditional</strong> become required under the stated cond
 <td><code>signature</code></td>
 <td>string</td>
 <td><strong>conditional</strong></td>
-<td>—</td>
+<td>-</td>
 <td>string</td>
 <td><code>sha256:&lt;hex&gt;</code> over canonical YAML (excl. <code>validation:</code>)</td>
 <td><code>"sha256:acb123def..."</code></td>
@@ -2247,7 +2247,7 @@ Fields marked <strong>conditional</strong> become required under the stated cond
 <td><code>validation_mode</code></td>
 <td>string</td>
 <td>optional</td>
-<td>—</td>
+<td>-</td>
 <td>enum</td>
 <td><code>strict</code>, <code>lenient</code></td>
 <td><code>"strict"</code></td>
@@ -2460,7 +2460,7 @@ Fields marked <strong>conditional</strong> become required under the stated cond
 <tr>
 <td><code>repetitions</code></td>
 <td>integer</td>
-<td>—</td>
+<td>-</td>
 <td>1–1000</td>
 <td><code>3</code></td>
 </tr>
@@ -2481,7 +2481,7 @@ Fields marked <strong>conditional</strong> become required under the stated cond
 <tr>
 <td><code>pH</code></td>
 <td>number</td>
-<td>—</td>
+<td>-</td>
 <td>0–14</td>
 <td><code>7.4</code></td>
 </tr>
@@ -2610,10 +2610,10 @@ Fields marked <strong>conditional</strong> become required under the stated cond
 <li>The <code>path</code> is relative to the <code>.labfile</code> directory.</li>
 <li><code>repository_url</code> and <code>doi</code> enable integration with data repositories (e.g., Zenodo, Figshare).</li>
 <li><code>access_level</code> defines availability:</li>
-<li><code>"public"</code> — openly accessible</li>
-<li><code>"restricted"</code> — visible only to collaborators</li>
-<li><code>"private"</code> — local storage only</li>
-<li><code>"tokenized"</code> or <code>"paid"</code> — controlled programmatically</li>
+<li><code>"public"</code> - openly accessible</li>
+<li><code>"restricted"</code> - visible only to collaborators</li>
+<li><code>"private"</code> - local storage only</li>
+<li><code>"tokenized"</code> or <code>"paid"</code> - controlled programmatically</li>
 </ul>
 <p><strong>Error Example</strong></p>
 <div class="codehilite"><pre><span></span><code><span class="n">E312</span><span class="o">:</span><span class="w"> </span><span class="n">Attachment</span><span class="w"> </span><span class="n">missing</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="n">or</span><span class="w"> </span><span class="n">format</span>
@@ -2634,9 +2634,9 @@ Fields marked <strong>conditional</strong> become required under the stated cond
 <p><strong>Notes</strong></p>
 <ul>
 <li><code>relation_type</code> can be:</li>
-<li><code>"derived_from"</code> — result or transformation of another file.</li>
-<li><code>"variant_of"</code> — minor modification or alternate protocol version.</li>
-<li><code>"supersedes"</code> — officially replaces another protocol.</li>
+<li><code>"derived_from"</code> - result or transformation of another file.</li>
+<li><code>"variant_of"</code> - minor modification or alternate protocol version.</li>
+<li><code>"supersedes"</code> - officially replaces another protocol.</li>
 <li><code>source_type</code> describes the entity:</li>
 <li><code>"labfile"</code>, <code>"dataset"</code>, <code>"publication"</code>, <code>"instrument"</code>, <code>"repository"</code>, or <code>"external_db"</code>.</li>
 <li>Each provenance record can include DOI or internal reference.</li>
@@ -2706,7 +2706,7 @@ Fields marked <strong>conditional</strong> become required under the stated cond
 <li>Any modification to the file after validation invalidates the signature.</li>
 </ul>
 <p><strong>Error Example</strong></p>
-<div class="codehilite"><pre><span></span><code><span class="n">E590</span><span class="o">:</span><span class="w"> </span><span class="n">Signature</span><span class="w"> </span><span class="n">mismatch</span><span class="w"> </span><span class="err">—</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="n">modified</span><span class="w"> </span><span class="n">post</span><span class="o">-</span><span class="n">validation</span>
+<div class="codehilite"><pre><span></span><code><span class="n">E590</span><span class="o">:</span><span class="w"> </span><span class="n">Signature</span><span class="w"> </span><span class="n">mismatch</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="n">modified</span><span class="w"> </span><span class="n">post</span><span class="o">-</span><span class="n">validation</span>
 </code></pre></div>
 
 <hr />
@@ -2783,8 +2783,8 @@ They describe how steps <strong>repeat</strong>, <strong>branch</strong>, or <st
 
 <p><strong>Rules</strong></p>
 <ul>
-<li><code>count</code> — number of repetitions (≥1).</li>
-<li><code>interval</code> — waiting time between repetitions, with explicit units.</li>
+<li><code>count</code> - number of repetitions (≥1).</li>
+<li><code>interval</code> - waiting time between repetitions, with explicit units.</li>
 <li>Repetitions must not introduce side effects (e.g., cumulative additions).</li>
 <li>In <code>strict</code> mode, both <code>count</code> and <code>interval</code> must be defined.</li>
 </ul>
@@ -2808,11 +2808,11 @@ They describe how steps <strong>repeat</strong>, <strong>branch</strong>, or <st
 
 <p><strong>Rules</strong></p>
 <ul>
-<li><code>variable</code> — monitored parameter name (e.g., <code>"OD600"</code>).</li>
-<li><code>operator</code> — comparison operator (<code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code>, <code>==</code>, <code>!=</code>).</li>
-<li><code>value</code> — numeric threshold.</li>
-<li><code>check_interval</code> — polling frequency.</li>
-<li><code>max_duration</code> — safety cap to avoid infinite loops.</li>
+<li><code>variable</code> - monitored parameter name (e.g., <code>"OD600"</code>).</li>
+<li><code>operator</code> - comparison operator (<code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code>, <code>==</code>, <code>!=</code>).</li>
+<li><code>value</code> - numeric threshold.</li>
+<li><code>check_interval</code> - polling frequency.</li>
+<li><code>max_duration</code> - safety cap to avoid infinite loops.</li>
 </ul>
 <p><strong>Example Behavior</strong></p>
 <blockquote>
@@ -2893,7 +2893,7 @@ They describe how steps <strong>repeat</strong>, <strong>branch</strong>, or <st
 </tr>
 <tr>
 <td><code>hybrid</code></td>
-<td>Combination — human setup, machine execution</td>
+<td>Combination - human setup, machine execution</td>
 <td>Both must be defined</td>
 </tr>
 </tbody>
@@ -3210,7 +3210,7 @@ This ensures immutability and reproducibility.</p>
 <span class="w">    </span><span class="p">{</span>
 <span class="w">      </span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Q302&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;steps[1].parameters.temperature&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Qualitative term &#39;room temperature&#39; is invalid — specify numeric value in °C.&quot;</span>
+<span class="w">      </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Qualitative term &#39;room temperature&#39; is invalid - specify numeric value in °C.&quot;</span>
 <span class="w">    </span><span class="p">},</span>
 <span class="w">    </span><span class="p">{</span>
 <span class="w">      </span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;R202&quot;</span><span class="p">,</span>

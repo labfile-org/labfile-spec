@@ -1,5 +1,5 @@
 site_name: "Labfile Specification | Open, Machine-Readable Protocol Format for Experimental Biology"
-site_description: "Official documentation for the .labfile format — a human-readable, machine-verifiable YAML standard for reproducible science, FAIR data, and lab automation."
+site_description: "Official documentation for the .labfile format - a human-readable, machine-verifiable YAML standard for reproducible science, FAIR data, and lab automation."
 site_author: "Labfile Core Team"
 site_url: "https://spec.labfile.bio"
 
@@ -11,6 +11,8 @@ theme:
   features:
     - navigation.instant
     - navigation.sections
+    - navigation.top
+    - navigation.tracking
     - content.code.copy
     - search.highlight
     - toc.follow
@@ -18,10 +20,25 @@ theme:
     - scheme: default
       primary: deep purple
       accent: amber
+  language: en
   logo: images/labfile-icon.png
   favicon: images/labfile-icon.png
 
 nav:
+  - Specification Overview: index.md
+  - Labfile Sections:
+      - version: labfile-sections/01-labfile-header.md
+      - meta.*: labfile-sections/02-meta.md
+      - materials.*: labfile-sections/03-materials.md
+      - devices.*: labfile-sections/04-devices.md
+      - procedures.*: labfile-sections/05-steps.md
+      - results.*: labfile-sections/06-expected-results.md
+      - safety.*: labfile-sections/07-safety.md
+      - attachments.*: labfile-sections/08-attachments.md
+      - provenance.*: labfile-sections/09-provenance.md
+      - extensions.*: labfile-sections/10-extensions.md
+      - validation.*: labfile-sections/11-validation.md
+      - validation-mode.*: labfile-sections/12-validation-mode.md
 
 markdown_extensions:
   - admonition
@@ -35,4 +52,27 @@ markdown_extensions:
   - md_in_html
 
 plugins:
-  - search
+  - search:
+      lang: en
+      separator: '[\s\-]+'
+  - sitemap:
+      changefreq: daily
+      priority: 0.7
+
+extra_css:
+  - stylesheets/overrides.css
+
+extra:
+  meta:
+    - name: keywords
+      content: "labfile specification, lab automation protocol, reproducible science, FAIR data, YAML schema"
+    - name: robots
+      content: "index, follow"
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/labfile-org/labfile-spec
+      name: GitHub
+    - icon: fontawesome/solid/flask
+      link: https://labfile.bio
+      name: Labfile Project
+  generator: false
